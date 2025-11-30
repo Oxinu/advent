@@ -1,0 +1,562 @@
+/* styles.css
+   -------------------------------------------
+   Zentrales Stylesheet für den Adventskalender
+   Grobe Struktur:
+   1) Variablen & Grundlayout
+   2) Hintergrund (Bild, Overlay + Shimmer, Aurora, Stern, Schneeglanz)
+   3) Schneefall
+   4) Layout (Wrap, Header, Grid)
+   5) Türen (Doors)
+   6) Modals & Story
+   7) Toast
+   8) Choices (A/B-Entscheidungen)
+   9) Animationen (Keyframes)
+   ------------------------------------------- */
+
+/* 1) Variablen & Grundlayout */
+:root {
+  --bg: #0b132b;
+  --bg-2: #1c2541;
+  --card: #3a506b;
+  --accent: #e0fbfc;
+  --gold: #ffd166;
+  --red: #ef476f;
+  --green: #06d6a0;
+  --text: #f6f8fa;
+  --muted: #c7d3e3;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  --radius: 18px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Grundlayout für den Body */
+html {
+  /* Hintergrundfarbe vom Browser überschreiben, da wir eigenes Bild nutzen */
+  background: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+
+  /* Hintergrundbild des Kalenders */
+  background: url('assets/hintergrund_kalender.png')
+              center / cover no-repeat fixed !important;
+
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 2) Hintergrund: Overlay + Shimmer + Aurora + Stern + Schneeglanz */
+
+/* Halbtransparentes Overlay mit leichtem Glitzer-Pattern */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* Kombination aus dunkler Tönung + feinem „Sternen“-Raster */
+  background:
+    rgba(0, 0, 20, .35),
+    radial-gradient(circle, rgba(255, 255, 255, .10) 1%, transparent 1%) repeat;
+  background-size: auto, 4px 4px;
+
+  animation: shimmer 6s linear infinite;
+}
+
+/* Aurora / Polarlicht-Lichtschleier am Himmel */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(130, 255, 200, 0.15), transparent 70%),
+    radial-gradient(ellipse at 70% 20%, rgba(80, 160, 255, 0.10), transparent 60%);
+  background-blend-mode: screen;
+  animation: aurora 14s ease-in-out infinite alternate;
+}
+
+/* Glitzernder Schnee am unteren Bildschirmrand */
+#snow-glow {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, .4) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(15px);
+  animation: glowSnow 5s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* Weihnachtsstern oben rechts */
+#star {
+  position: fixed;
+  top: 40px;
+  right: 60px;
+  width: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(255, 230, 100, 0.8));
+  /* Der Stern schwebt leicht und pulsiert */
+  animation:
+    starFloat 5s ease-in-out infinite,
+    starPulse 3s ease-in-out infinite;
+}
+
+#star::before {
+  content: "★";
+  font-size: 72px;
+  color: #ffd700;
+  text-shadow:
+    0 0 15px #fff5b0,
+    0 0 30px #ffdf6b,
+    0 0 45px #ffcc33;
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+  display: block;
+  transform-origin: center;
+}
+
+/* 3) Schneefall-Effekt */
+.snow,
+.snow::before,
+.snow::after {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -10vh;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(2px 2px at 20px 20px, rgba(255, 255, 255, .95) 99%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(3px 3px at 60px 40px, rgba(255, 255, 255, .9) 99%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(2px 2px at 100px 80px, rgba(255, 255, 255, .85) 99%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(3px 3px at 140px 10px, rgba(255, 255, 255, .9) 99%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(2px 2px at 180px 50px, rgba(255, 255, 255, .95) 99%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200px 200px;
+  animation: snowFall 12s linear infinite;
+}
+
+.snow::before,
+.snow::after {
+  content: "";
+}
+
+.snow::before {
+  opacity: .7;
+  animation-duration: 18s;
+  background-size: 220px 220px;
+  filter: blur(.3px);
+}
+
+.snow::after {
+  opacity: .5;
+  animation-duration: 25s;
+  background-size: 260px 260px;
+  filter: blur(1px);
+}
+
+/* 4) Layout (Container, Header, Grid) */
+
+.wrap {
+  position: relative;
+  z-index: 2; /* über Hintergrund-Effekten */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: clamp(32px, 6vw, 56px);
+  background: linear-gradient(180deg, var(--gold), #ffcd7a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .35);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 28px;
+}
+
+/* 5) Türen (Door Cards) */
+
+.door {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .0)), var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+  outline: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Schweben + Leuchten beim Hover (nur offene Türen) */
+.door:not(.locked):hover {
+  box-shadow:
+    0 0 25px 10px rgba(255, 200, 100, .5),
+    0 0 60px rgba(255, 255, 255, .2);
+  transform: translateY(-6px) scale(1.05);
+}
+
+/* Inhalt der Tür (Nummer + Label) immer zentriert */
+.door a {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px;
+}
+
+/* Nummer-Style */
+.door .num {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: .5px;
+  background: linear-gradient(180deg, var(--gold), #ffcd7a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+/* Label (Kurz-Titel) unter der Nummer */
+.door .label {
+  font-size: 12px;
+  color: var(--accent);
+  opacity: .85;
+}
+
+/* Gesperrte Türchen optisch absetzen */
+.door.locked {
+  filter: grayscale(.35) brightness(.85);
+  cursor: not-allowed;
+}
+
+/* Kleines Schloss-Symbol hinter der Nummer bei gesperrten Türen */
+.door.locked .num::after {
+  content: " 🔒";
+  font-size: .9em;
+}
+
+/* Spezieller Effekt, wenn eine Tür gerade „öffnet“ (per JS gesetzt) */
+.door.twinkle {
+  position: relative;
+  animation: doorGlow 0.9s ease-out;
+}
+
+/* 6) Modals & Story-Karten */
+
+/* Modal-Grundstruktur, wird über :target aktiviert */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 50;
+}
+
+/* Wenn das entsprechende #dayX im Hash steht, Modal anzeigen */
+.modal:target {
+  display: block;
+}
+
+/* Verdunkelung hinter dem Story-Dialog */
+.modal .backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 26, .78);
+  backdrop-filter: blur(4px);
+  animation: candle 3s infinite ease-in-out;
+}
+
+/* Container für die eigentliche Karte */
+.modal .dialog {
+  position: relative;
+  max-width: 840px;
+  margin: min(8vh, 60px) auto;
+  padding: 0 16px;
+  z-index: 1;
+}
+
+/* Story-Karte */
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02)), var(--bg-2);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+/* Einblenden, sobald das Modal aktiv ist */
+.modal:target .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Kopfzeile der Story-Karte (Titel + Schließen-Knopf) */
+.story-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.story-head h2 {
+  margin: 0;
+  font-size: clamp(20px, 3.4vw, 32px);
+}
+
+/* Schließen-Knopf */
+.close {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--bg);
+  background: linear-gradient(180deg, var(--gold), #ffcd7a);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+/* Untertitel unter dem Titel */
+.byline {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+/* Grundstil für Story-Text */
+.story p {
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+/* 7) Toast-Meldung */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: rgba(10, 14, 26, .9);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  font-size: 14px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+/* 8) Choices (A/B-Entscheidungen innerhalb einer Story) */
+
+.choices {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* Stil für die Frage der Entscheidung */
+.choice-question {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.choice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.choice-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(0, 0, 0, .35);
+  color: var(--text);
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background .15s ease, transform .1s ease, box-shadow .15s ease;
+}
+
+.choice-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, .12);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(255, 209, 102, .4);
+}
+
+.choice-btn:disabled {
+  opacity: .7;
+  cursor: default;
+}
+
+/* Gewählte Entscheidung optisch hervorheben */
+.choice-btn.chosen {
+  background: linear-gradient(120deg, var(--gold), #ffcd7a);
+  color: #201300;
+  border-color: transparent;
+  box-shadow: 0 0 14px rgba(255, 209, 102, .6);
+}
+
+.choice-result {
+  font-size: .95rem;
+  color: var(--accent);
+}
+
+/* 9) Keyframes (Animationen) */
+
+/* fallender Schnee */
+@keyframes snowFall {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* leichtes Funkeln im Overlay */
+@keyframes shimmer {
+  from {
+    transform: translateY(0px);
+    opacity: .5;
+  }
+  to {
+    transform: translateY(10px);
+    opacity: .6;
+  }
+}
+
+/* Polarlicht-Bewegung */
+@keyframes aurora {
+  0% {
+    transform: translateX(0px) scale(1);
+    opacity: .7;
+  }
+  50% {
+    transform: translateX(-60px) scale(1.1);
+    opacity: .9;
+  }
+  100% {
+    transform: translateX(60px) scale(1);
+    opacity: .7;
+  }
+}
+
+/* Flackernder Hintergrund bei offenem Modal */
+@keyframes candle {
+  0%,
+  100% {
+    background-color: rgba(10, 14, 26, .75);
+  }
+  50% {
+    background-color: rgba(20, 18, 36, .65);
+  }
+}
+
+/* Glitzerschnee am unteren Rand */
+@keyframes glowSnow {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+/* Tür-Glow beim Öffnen */
+@keyframes doorGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 200, 100, 0);
+  }
+  40% {
+    box-shadow: 0 0 25px 10px rgba(255, 210, 120, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 200, 100, 0);
+  }
+}
+
+/* Stern-Animationen */
+@keyframes starTwinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes starPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 220, 80, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 240, 150, 1));
+  }
+}
+
+@keyframes starFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
