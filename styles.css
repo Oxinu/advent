@@ -1,12 +1,12 @@
 /* styles.css
    -------------------------------------------
-   Zentrales Stylesheet für den Adventskalender
+   Zentrales Stylesheet fÃ¼r den Adventskalender
    Grobe Struktur:
    1) Variablen & Grundlayout
    2) Hintergrund (Bild, Overlay + Shimmer, Aurora, Stern, Schneeglanz)
    3) Schneefall
    4) Layout (Wrap, Header, Grid)
-   5) Türen (Doors)
+   5) TÃ¼ren (Doors)
    6) Modals & Story
    7) Toast
    8) Choices (A/B-Entscheidungen)
@@ -33,9 +33,9 @@ body {
   height: 100%;
 }
 
-/* Grundlayout für den Body */
+/* Grundlayout fÃ¼r den Body */
 html {
-  /* Hintergrundfarbe vom Browser überschreiben, da wir eigenes Bild nutzen */
+  /* Hintergrundfarbe vom Browser Ã¼berschreiben, da wir eigenes Bild nutzen */
   background: none !important;
 }
 
@@ -64,7 +64,7 @@ body::before {
   z-index: 0;
   pointer-events: none;
 
-  /* Kombination aus dunkler Tönung + feinem „Sternen“-Raster */
+  /* Kombination aus dunkler TÃ¶nung + feinem â€žSternenâ€œ-Raster */
   background:
     rgba(0, 0, 20, .35),
     radial-gradient(circle, rgba(255, 255, 255, .10) 1%, transparent 1%) repeat;
@@ -118,7 +118,7 @@ body::after {
 }
 
 #star::before {
-  content: "★";
+  content: "â˜…";
   font-size: 72px;
   color: #ffd700;
   text-shadow:
@@ -174,7 +174,7 @@ body::after {
 
 .wrap {
   position: relative;
-  z-index: 2; /* über Hintergrund-Effekten */
+  z-index: 2; /* Ã¼ber Hintergrund-Effekten */
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 16px;
@@ -225,8 +225,6 @@ header {
   background: rgba(255, 255, 255, 0.18);
 }
 
-
-
 header h1 {
   font-size: clamp(32px, 6vw, 56px);
   background: linear-gradient(180deg, var(--gold), #ffcd7a);
@@ -249,7 +247,7 @@ footer {
   margin-top: 28px;
 }
 
-/* 5) Türen (Door Cards) */
+/* 5) TÃ¼ren (Door Cards) */
 
 .door {
   position: relative;
@@ -262,7 +260,7 @@ footer {
   outline: 1px solid rgba(255, 255, 255, .08);
 }
 
-/* Schweben + Leuchten beim Hover (nur offene Türen) */
+/* Schweben + Leuchten beim Hover (nur offene TÃ¼ren) */
 .door:not(.locked):hover {
   box-shadow:
     0 0 25px 10px rgba(255, 200, 100, .5),
@@ -270,7 +268,7 @@ footer {
   transform: translateY(-6px) scale(1.05);
 }
 
-/* Inhalt der Tür (Nummer + Label) immer zentriert */
+/* Inhalt der TÃ¼r (Nummer + Label) immer zentriert */
 .door a {
   position: absolute;
   inset: 0;
@@ -303,19 +301,19 @@ footer {
   opacity: .85;
 }
 
-/* Gesperrte Türchen optisch absetzen */
+/* Gesperrte TÃ¼rchen optisch absetzen */
 .door.locked {
   filter: grayscale(.35) brightness(.85);
   cursor: not-allowed;
 }
 
-/* Kleines Schloss-Symbol hinter der Nummer bei gesperrten Türen */
+/* Kleines Schloss-Symbol hinter der Nummer bei gesperrten TÃ¼ren */
 .door.locked .num::after {
-  content: " 🔒";
+  content: " ðŸ”’";
   font-size: .9em;
 }
 
-/* Spezieller Effekt, wenn eine Tür gerade „öffnet“ (per JS gesetzt) */
+/* Spezieller Effekt, wenn eine TÃ¼r gerade â€žÃ¶ffnetâ€œ (per JS gesetzt) */
 .door.twinkle {
   position: relative;
   animation: doorGlow 0.9s ease-out;
@@ -323,12 +321,16 @@ footer {
 
 /* 6) Modals & Story-Karten */
 
-/* Modal-Grundstruktur, wird über :target aktiviert */
+/* Modal-Grundstruktur, wird Ã¼ber :target aktiviert */
 .modal {
   position: fixed;
   inset: 0;
   display: none;
   z-index: 50;
+
+  /* wichtig für iOS: Modal darf selbst scrollen */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Wenn das entsprechende #dayX im Hash steht, Modal anzeigen */
@@ -345,7 +347,7 @@ footer {
   animation: candle 3s infinite ease-in-out;
 }
 
-/* Container für die eigentliche Karte */
+/* Container fÃ¼r die eigentliche Karte */
 .modal .dialog {
   position: relative;
   max-width: 840px;
@@ -372,7 +374,7 @@ footer {
   transform: translateY(0);
 }
 
-/* Kopfzeile der Story-Karte (Titel + Schließen-Knopf) */
+/* Kopfzeile der Story-Karte (Titel + SchlieÃŸen-Knopf) */
 .story-head {
   display: flex;
   align-items: center;
@@ -386,7 +388,7 @@ footer {
   font-size: clamp(20px, 3.4vw, 32px);
 }
 
-/* Schließen-Knopf */
+/* SchlieÃŸen-Knopf */
 .close {
   text-decoration: none;
   font-weight: 700;
@@ -408,7 +410,7 @@ footer {
   margin: 0 0 12px;
 }
 
-/* Grundstil für Story-Text */
+/* Grundstil fÃ¼r Story-Text */
 .story p {
   line-height: 1.8;
   margin: 10px 0;
@@ -446,7 +448,7 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
-/* Stil für die Frage der Entscheidung */
+/* Stil fÃ¼r die Frage der Entscheidung */
 .choice-question {
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -481,7 +483,7 @@ footer {
   cursor: default;
 }
 
-/* Gewählte Entscheidung optisch hervorheben */
+/* GewÃ¤hlte Entscheidung optisch hervorheben */
 .choice-btn.chosen {
   background: linear-gradient(120deg, var(--gold), #ffcd7a);
   color: #201300;
@@ -557,7 +559,7 @@ footer {
   }
 }
 
-/* Tür-Glow beim Öffnen */
+/* TÃ¼r-Glow beim Ã–ffnen */
 @keyframes doorGlow {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 200, 100, 0);
@@ -600,5 +602,36 @@ footer {
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+/* 10) Responsive-Anpassungen (Mobile) */
+@media (max-width: 600px) {
+  /* Etwas Platz nach oben, weil HUD nicht mehr absolut ist */
+  header {
+    padding-top: 56px;
+    text-align: center;
+  }
+
+  /* HUD nicht mehr über dem Titel „schweben“, sondern normal im Flow */
+  .hud {
+    position: static;
+    margin-bottom: 8px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Story-Karte auf kleinen Screens intern scrollbar machen */
+  .card {
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Kopfzeile der Story-Karte auf Handy untereinander */
+  .story-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
