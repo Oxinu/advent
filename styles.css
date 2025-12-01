@@ -118,7 +118,7 @@ body::after {
 }
 
 #star::before {
-  content: "â˜…";
+  content: "\2605 "; /* ★ Unicode-Stern, sauber terminiert */
   font-size: 72px;
   color: #ffd700;
   text-shadow:
