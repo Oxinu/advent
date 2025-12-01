@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adventskalender</title>
+  <meta name="description" content="Adventskalender – 24 Tage, eine Geschichte." />
+  <!-- Zentrales Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Schneefall-Effekt -->
+  <div class="snow"></div>
+
+  <!-- Weihnachtsstern -->
+  <div id="star"></div>
+
+  <!-- Glitzernder Schneeglanz unten -->
+  <div id="snow-glow"></div>
+
+  <div class="wrap">
+<header>
+  <h1>Adventskalender</h1>
+
+  <!-- Spieler-Anzeige + Spieler wechseln -->
+  <div class="hud">
+    <span id="player-name-label">Spieler: ?</span>
+    <button id="change-player" class="player-switch-btn" type="button">
+      Spieler wechseln
+    </button>
+  </div>
+</header>
+
+    <main class="grid" aria-label="Adventskalender mit 24 Türchen">
+      <!-- 1-8 -->
+      <div class="door" data-tone="gold">
+        <a href="#day1" aria-label="Türchen 1 öffnen">
+          <div class="num">1</div>
+          <div class="label">Hunger</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day2" aria-label="Türchen 2 öffnen">
+          <div class="num">2</div>
+          <div class="label">Die Dame in Blau</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day3" aria-label="Türchen 3 öffnen">
+          <div class="num">3</div>
+          <div class="label">Das Rätsel</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day4" aria-label="Türchen 4 öffnen">
+          <div class="num">4</div>
+          <div class="label">Aufbruch</div>
+        </a>
+      </div>
+      <div class="door" data-tone="gold">
+        <a href="#day5" aria-label="Türchen 5 öffnen">
+          <div class="num">5</div>
+          <div class="label">Heulen im Wind</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day6" aria-label="Türchen 6 öffnen">
+          <div class="num">6</div>
+          <div class="label">Nikolausabend</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day7" aria-label="Türchen 7 öffnen">
+          <div class="num">7</div>
+          <div class="label">Fernes Licht</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day8" aria-label="Türchen 8 öffnen">
+          <div class="num">8</div>
+          <div class="label">Die Katze</div>
+        </a>
+      </div>
+
+      <!-- 9-16 -->
+      <div class="door" data-tone="gold">
+        <a href="#day9" aria-label="Türchen 9 öffnen">
+          <div class="num">9</div>
+          <div class="label">Die Wachen</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day10" aria-label="Türchen 10 öffnen">
+          <div class="num">10</div>
+          <div class="label">Felsspalte</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day11" aria-label="Türchen 11 öffnen">
+          <div class="num">11</div>
+          <div class="label">Zwei Freunde</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day12" aria-label="Türchen 12 öffnen">
+          <div class="num">12</div>
+          <div class="label">Der Sturz</div>
+        </a>
+      </div>
+      <div class="door" data-tone="gold">
+        <a href="#day13" aria-label="Türchen 13 öffnen">
+          <div class="num">13</div>
+          <div class="label">Die Schneestadt</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day14" aria-label="Türchen 14 öffnen">
+          <div class="num">14</div>
+          <div class="label">Begegnung</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day15" aria-label="Türchen 15 öffnen">
+          <div class="num">15</div>
+          <div class="label">Voller Wärme</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day16" aria-label="Türchen 16 öffnen">
+          <div class="num">16</div>
+          <div class="label">Lerntage</div>
+        </a>
+      </div>
+
+      <!-- 17-24 -->
+      <div class="door" data-tone="gold">
+        <a href="#day17" aria-label="Türchen 17 öffnen">
+          <div class="num">17</div>
+          <div class="label">Winterfreuden</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day18" aria-label="Türchen 18 öffnen">
+          <div class="num">18</div>
+          <div class="label">Im Tiefenarchiv</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day19" aria-label="Türchen 19 öffnen">
+          <div class="num">19</div>
+          <div class="label">Der Kristall</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day20" aria-label="Türchen 20 öffnen">
+          <div class="num">20</div>
+          <div class="label">Scheideweg</div>
+        </a>
+      </div>
+      <div class="door" data-tone="gold">
+        <a href="#day21" aria-label="Türchen 21 öffnen">
+          <div class="num">21</div>
+          <div class="label">Ruf des Herzens</div>
+        </a>
+      </div>
+      <div class="door" data-tone="red">
+        <a href="#day22" aria-label="Türchen 22 öffnen">
+          <div class="num">22</div>
+          <div class="label">Das Tor</div>
+        </a>
+      </div>
+      <div class="door" data-tone="green">
+        <a href="#day23" aria-label="Türchen 23 öffnen">
+          <div class="num">23</div>
+          <div class="label">Nacht der Zeichen</div>
+        </a>
+      </div>
+      <div class="door" data-tone="blue">
+        <a href="#day24" aria-label="Türchen 24 öffnen">
+          <div class="num">24</div>
+          <div class="label">Tor des Winters</div>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <p>© <span id="year">2025</span> Adventskalender by Lasse, Ben, Tom</p>
+    </footer>
+  </div>
+
+  <!-- 24 Kapitel: Die Geschichte von Elyas -->
+
+  <section id="day1" class="modal" aria-labelledby="title-day1" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day1">Tag 1 – Der Hunger im Bauch</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+        <p>Der Winter liegt schwer über dem kleinem Dorf Frosthain. Die Dächer tragen eine dicke Schneedecke, und in den engen Gassen pfeift ein eisiger Wind. Du bist Elyas, zwölf Jahre alt, ein Waisenjunge ohne Familie, ohne Zuhause, ohne warmen Platz zum Schlafen. Die Menschen gehen an dir vorbei wie an einem Schatten.Du hast gelernt, zu überleben...irgendwie. Aber diese Dezembertage… Sie fühlen sich anders an. Als würde etwas auf dich warten.</p>
+          <p>Der Abend senkt sich über das Land, die Berge leuchten rot im letzten Licht. Du liegst auf dem gefrorenen Boden nahe der alten Brücke, dein Atem steigt als weiße Wolken in die Luft. Dein Magen knurrt schmerzhaft, seit gestern hast du nichts mehr gegessen. Der Duft von frischem Brot weht aus der Backstube von Bäcker Torben herüber. Du schleichst um das Haus herum in den Hinterhof, wo die Brotkörbe zum Auskühlen stehen. Mit zitternden Fingern schnappst du dir ein kleines Laibchen und rennst in eine schmale Seitengasse. Dort sitzen zwei abgemagerte Hunde im Schnee und sehen dich mit großen, hungrigen Augen an. Du bist selbst fast am Verhungern – aber die Tiere wirken genauso verzweifelt wie du.</p>
+          
+          <!-- Entscheidungs-Bereich für Tag 1 -->
+          <div class="choices" data-day="1">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day2" class="modal" aria-labelledby="title-day2" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day2">Tag 2 – Die Dame in Blau</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+
+          <p>Du sitzt hinter einem Holzverschlag und isst dein Brot, als eine warme Stimme dich anspricht.
+             „Junge… warum sitzt du hier so allein?“. Eine ältere Frau in einem blauen Wollmantel steht vor dir. 
+             Ihre Augen funkeln freundlich, nicht verächtlich wie bei den meisten. Sie hält dir die Hand hin. 
+             „Komm, iss mit mir. Eine Suppe tut dir gut.“ Der Geruch ihrer Kräuter erinnert dich an deine Mutter
+              – jedenfalls an das, woran du dich noch erinnern kannst. Dein Herz schlägt schnell. 
+              Du bist es nicht gewohnt, eingeladen zu werden. Aber vielleicht ist sie ehrlich?</p>
+
+          <!-- Entscheidungs-Bereich für Tag 2 -->
+          <div class="choices" data-day="2">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day3" class="modal" aria-labelledby="title-day3" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day3">Tag 3 – Das Rätsel am Dorfplatz</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+
+          <p> Auf deinem Weg durch die Stadt triffst du auf eine große Menschenmenge. 
+            Viele lachen, jubeln und rufen – eine Art Quizshow findet statt. Ein bärtiger, fröhlicher Mann ruft:
+             „Du da! Willst du dein Glück versuchen?“ Es ist Dimitri, ein Händler, der Kinder gern Rätsel lösen lässt. 
+              „Schaffst du es, bekommst du etwas Warmes zu essen!“. 
+              Dein Magen knurrt schon wieder. Du schluckst, und hörst Dir das Rätsel an:
+            </p> 
+            <p><strong> Zwei Freunde treffen sich auf der Straße: "Wie geht es eigentlich Deinen 3 Söhnen?", 
+            fragt der eine. "Wie alt sind die denn jetzt?" Der andere: 
+            "Das Produkt der Jahre ist 36 und die Summe der Jahre ist genau das Datum des heutigen Tages." 
+            Wieder der erste Nachbar: "Hm, das reicht mir noch nicht" Das bemerkt jetzt auch sein Freund: 
+            "Oh ja, stimmt, ich habe ganz vergessen zu erwähnen, dass mein ältester Sohn angefangen hat, 
+            Geige zu spielen." 
+            Wie alt ist der älteste Sohn? </strong></p>
+          <!-- Entscheidungs-Bereich für Tag 3 -->
+          <div class="choices" data-day="3">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+              <button class="choice-btn" data-choice="C"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day4" class="modal" aria-labelledby="title-day4" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day4">Tag 4 – Der Aufbruch</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Etwas zieht dich weg aus der Stadt. Du weißt nicht warum – aber du spürst, dass du gehen musst. 
+            Vielleicht liegt es am Traum von letzter Nacht, in dem ein grünes Licht dich rief. 
+            Du packst das wenige, das du hast: ein Stück Brot und etwas Wasser. 
+            Der Frost kriecht dir in die Knochen, als du das Stadttor erreichst. 
+            Die Wachen lassen dich gleichgültig vorbei. 
+            Draußen beginnt der große, weiße Wald. Du atmest tief ein – und bist bereit.</p>
+          <!-- Entscheidungs-Bereich für Tag 4 -->
+          <div class="choices" data-day="4">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day5" class="modal" aria-labelledby="title-day5" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day5">Tag 5 – Das Heulen im Wind</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Du wanderst über schneebedeckte Felder und durch knarrende Wälder. 
+            Der Himmel ist grau, die Sonne schwach. Nach vielen Kilometern hörst du ein dünnes, klagendes Heulen. 
+            Es ist kein Wolf… eher ein kleines Tier. 
+            Zwischen zwei Felsen liegt ein verletzter Fuchs, das Bein verdreht, die Augen voller Angst. 
+            Er versucht sich aufzurichten, fällt aber wieder hin. 
+            Der Wind wird stärker, der Schnee dichter. Du musst dich entscheiden.</p>
+          <!-- Entscheidungs-Bereich für Tag 5 -->
+          <div class="choices" data-day="5">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+          </div>
+        </article>
+    </div>
+  </section>
+
+  <section id="day6" class="modal" aria-labelledby="title-day6" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day6">Tag 6 – Nikolausabend</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+
+          <p>Die Nacht ist kalt, und der Wind peitscht durch die Bäume.
+            Während du dein kleines Lager aufschlägst, hörst du Schritte.
+            Ein Junge, kaum älter als du, mit einem Wanderstab nähert sich.
+            „Ich heiße Jaro“, sagt er und lächelt.
+            Er hält dir eine dampfende Schüssel Suppe hin.
+            „Alleine ist es gefährlich. Lass mich mit dir reisen.“
+            Seine Stimme klingt ehrlich, aber du kennst die Welt: Manchmal täuscht sie.</p>
+
+            <div class="choices" data-day="6">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day7" class="modal" aria-labelledby="title-day7" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day7">Tag 7 – Das ferne Licht</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Ihr wandert Seite an Seite durch dichte Wälder.
+              Die Sonne ist schon längst verschwunden, als euch ein Licht am Horizont auffällt.
+              Es ist seltsam grünlich, wie ein schimmernder Stern.
+              Jaro kneift die Augen zusammen. „So etwas habe ich noch nie gesehen.“
+              Ein kalter Windstoß lässt die Äste erzittern.
+              Das Licht pulsiert kurz.
+              Ihr könntet hingehen – oder es ignorieren.</p>
+            <div class="choices" data-day="7">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+   <section id="day8" class="modal" aria-labelledby="title-day8" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day8">Tag 8 – Die Katze</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Am Rand eines kleinen Dorfes hörst du ein jämmerliches Miauen.
+            Eine Katze sitzt ganz oben in einem kahlen Baum fest.
+            Eine alte Frau steht darunter und weint.
+            „Bitte… sie kommt nicht runter…“
+            Du betrachtest den Baum: hoch, dünn und vereist.
+            Jaro kratzt sich am Kopf. „Wie kriegen wir sie da runter?“
+            Es ist gefährlich – aber du willst helfen. </p>
+            <div class="choices" data-day="8">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day9" class="modal" aria-labelledby="title-day9" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day9">Tag 9 – Die Wachen</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Kurz nach dem Dorf hörst du Pfeifen und Rufe.
+            Drei Stadtwachen kommen auf euch zugestürmt.
+            „Da! Die beiden! Wir haben Berichte über Diebstähle!“
+            Jaro hebt die Hände. „Wir haben nichts getan!“
+            Doch die Wachen hören nicht zu.
+            Sie packen dich grob am Arm.
+            Der Wald wirkt plötzlich bedrohlich.</p>
+            <div class="choices" data-day="9">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  
+
+<section id="day10" class="modal" aria-labelledby="title-day10" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day10">Tag 10 – Die Felsspalte</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Die Wachen lassen nicht locker. Sie hetzen euch durch den Wald, 
+            obwohl sie euch eigentlich festnehmen sollten.
+            Warum? Du rennst über gefrorene Erde – und plötzlich bricht sie unter dir weg.
+            Du fällst, schreist, stürzt in eine dunkle Felsspalte. Der Boden ist kalt und hart.
+            Jaro ruft von oben: „ELYAS! Lebst du noch?“ Du musst handeln.</p>
+            <div class="choices" data-day="10">
+            <p class="choice-question"></p>
+            <div class="choice-buttons">
+              <button class="choice-btn" data-choice="A"></button>
+              <button class="choice-btn" data-choice="B"></button>
+            </div>
+            <p class="choice-result"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+<section id="day11" class="modal" aria-labelledby="title-day11" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day11">Tag 11 – Zwei Freunde im Schnee</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Ihr wandert weiter, durch gefrorene Täler und über weite Hügel.
+            Der Schnee knirscht unter euren Füßen, und die Kälte zwingt euch, dichter zusammenzurücken.
+            Jaro erzählt Geschichten über seine Heimat, und du lachst zum ersten Mal seit Langem.
+            Er teilt sein Essen, du teilst deine letzten Tropfen Wasser.
+            er Weg ist hart, aber eure Freundschaft wächst.
+            Zum ersten Mal in deinem Leben fühlst du dich… nicht mehr allein.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day12" class="modal" aria-labelledby="title-day12" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day12">Tag 12 – Der Sturz</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Der Tag beginnt normal: Ihr lauft, redet, sammelt Holz.
+            Doch dann erzittert der Boden.
+            Ein leises Summen füllt die Luft.
+            Du willst Jaro warnen – doch der Boden unter dir löst sich auf.
+            Du fällst.
+            Du fällst tiefer als möglich ist.
+            An dir zieht ein gigantisches, schimmerndes Etwas vorbei – wie ein ganzes Universum.
+            Dann siehst du ein grünes Tor aus Licht.
+            Es zieht dich hinein.
+            Du kannst nicht schreien.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+  <section id="day13" class="modal" aria-labelledby="title-day13" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day13">Tag 13 – Die Schneestadt</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Mit einem Schlag endet der Fall.
+          Du wirst in einen riesigen Schneehaufen geschleudert.
+          Prustend kämpfst du dich hervor.
+          Vor dir erhebt sich eine unfassbar große Stadt: Türme aus Glas, Lichter in allen Farben, seltsame Fahrzeuge auf glänzenden Straßen.
+          Es schneit, aber es fühlt sich… warm an.
+          Jaro ist verschwunden.
+          Menschen in seltsamer Kleidung laufen an dir vorbei.
+          Du fühlst dich winzig – aber auch neugierig.
+          Diese Welt ist nicht deine.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day14" class="modal" aria-labelledby="title-day14" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day14">Tag 14 – Begegnung</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>In einem Park begegnest du Hildegard,  
+          und einem Mann, dessen Gesicht an Dimitris Sohn erinnert.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day15" class="modal" aria-labelledby="title-day15" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day15">Tag 15 – Zimmer Voller Wärme</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Du wachst in einem warmen Bett auf. Hildegart bittet dich um Hilfe im Haushalt.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day16" class="modal" aria-labelledby="title-day16" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day16">Tag 16 – Lerntage</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Du entdeckst eine alte verriegelte Holztür im Hinterhof.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day17" class="modal" aria-labelledby="title-day17" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day17">Tag 17 – Winterfreuden</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <h2>⭐ TAG 17 – Schatten der Vergangenheit</h2>
+
+          <h3>[H] Guter Weg</h3>
+          <p>Hildegart erzählt dir von Frosthain.  
+          Nachts träumst du von alten Freunden – und Taten, auf die du stolz bist.</p>
+
+          <h3>[D] Krimineller Weg</h3>
+          <p>Du spürst, dass jemand euch beobachtet.  
+          Vielleicht die Polizei.  
+          Vielleicht dein Gewissen.</p>
+
+          <p><em>(Keine Entscheidung)</em></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day18" class="modal" aria-labelledby="title-day18" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day18">Tag 18 – Im Tiefenarchiv</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Ein Hund taucht im Wald auf – vielleicht einer der Hunde aus Frosthain.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day19" class="modal" aria-labelledby="title-day19" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day19">Tag 19 – Der Kristall</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story"> 
+          <p>Text der Kristall</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day20" class="modal" aria-labelledby="title-day20" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day20">Tag 20 – Scheideweg</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p> will, dass du die Werkstatt verrätst.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day21" class="modal" aria-labelledby="title-day21" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day21">Tag 21 – Ruf des Herzens</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Keine Entscheidung</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day22" class="modal" aria-labelledby="title-day22" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day22">Tag 22 – Das Tor</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p><strong>Wohin willst du?</strong></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day23" class="modal" aria-labelledby="title-day23" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day23">Tag 23 – Nacht der Zeichen</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Egal wo du bist:  
+          Etwas Großes steht bevor.  
+          Du spürst es bis in die Fingerspitzen.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="day24" class="modal" aria-labelledby="title-day24" aria-modal="true" role="dialog">
+    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+    <div class="dialog">
+      <article class="card">
+        <div class="story-head">
+          <h2 id="title-day24">Tag 24 – Tor des Winters</h2>
+          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        </div>
+        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+        <div class="story">
+          <p>Der Schnee fällt leise.  
+          Heute entscheidest du, wer du wirklich bist.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Audio-Elemente -->
+  <audio id="chime" src="assets/adventskalender.mp3" preload="auto"></audio>
+  <audio id="bells" src="assets/audiomix.mp3" preload="auto" loop></audio>
+
+  <!-- Skripte: Reihenfolge wichtig!
+       1) audio.js    -> definiert wireOpenSound
+       2) calendar.js -> sperrt Türen, ruft wireOpenSound()
+       3) choices-data.js -> Konfiguration für A/B-Entscheidungen
+       4) choices.js  -> bindet Entscheidungen an HTML -->
+  <script src="audio.js"></script>
+  <script src="calendar.js"></script>
+  <script src="choices.js"></script>
+</body>
+</html>
