@@ -302,9 +302,10 @@ footer {
 }
 
 /* Gesperrte TÃ¼rchen optisch absetzen */
-.door.locked {
-  filter: grayscale(.35) brightness(.85);
-  cursor: not-allowed;
+.door.locked .num::after {
+  /* Unicode-Escape statt direktes Emoji, damit kein Encoding-Murks entsteht */
+  content: " \0001F512";   /* 🔒 */
+  font-size: .9em;
 }
 
 /* Kleines Schloss-Symbol hinter der Nummer bei gesperrten TÃ¼ren */
@@ -388,7 +389,7 @@ footer {
   font-size: clamp(20px, 3.4vw, 32px);
 }
 
-/* SchlieÃŸen-Knopf */
+/* Schliessen-Knopf */
 .close {
   text-decoration: none;
   font-weight: 700;
@@ -410,7 +411,7 @@ footer {
   margin: 0 0 12px;
 }
 
-/* Grundstil fÃ¼r Story-Text */
+/* Grundstil fuer Story-Text */
 .story p {
   line-height: 1.8;
   margin: 10px 0;
@@ -448,7 +449,7 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
-/* Stil fÃ¼r die Frage der Entscheidung */
+/* Stil fuer die Frage der Entscheidung */
 .choice-question {
   font-weight: bold;
   margin-bottom: 0.5rem;
