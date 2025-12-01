@@ -32,7 +32,7 @@ const CHOICE_CONFIG = {
     B: {
       label: "❄️ Bleiben",
       points: 1,
-      text: "Du schüttelst den Kopf. 'Ich komme klar.' Hildegard sieht traurig aus, nickt aber und geht. Der Wind wird kälter, und du fühlst dich einsamer als zuvor."
+      text: "Du schüttelst den Kopf. 'Ich komme klar.' Die Frau sieht traurig aus, nickt aber und geht. Der Wind wird kälter, und du fühlst dich einsamer als zuvor."
     }
   },
 
