@@ -308,11 +308,7 @@ footer {
   font-size: .9em;
 }
 
-/* Kleines Schloss-Symbol hinter der Nummer bei gesperrten TÃ¼ren */
-.door.locked .num::after {
-  content: " ðŸ”’";
-  font-size: .9em;
-}
+
 
 /* Spezieller Effekt, wenn eine TÃ¼r gerade â€žÃ¶ffnetâ€œ (per JS gesetzt) */
 .door.twinkle {
@@ -449,7 +445,7 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
-/* Stil fuer die Frage der Entscheidung */
+/* Stil fÃ¼r die Frage der Entscheidung */
 .choice-question {
   font-weight: bold;
   margin-bottom: 0.5rem;
