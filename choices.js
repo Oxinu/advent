@@ -27,7 +27,7 @@ const CHOICE_CONFIG = {
     A: {
       label: "🍲 Mitgehen",
       points: 3,
-      text: "Du folgst Hildegard in ihre kleine Hütte. Drinnen knistert ein Feuer, und es riecht nach Suppe. Sie gibt dir eine Schüssel und lächelt mild. Es ist lange her, dass jemand freundlich zu dir war."
+      text: "Die Frau stellt sich Dir als Hildegard vor. Du folgst ihr in ihre kleine Hütte. Drinnen knistert ein Feuer, und es riecht nach Suppe. Sie gibt dir eine Schüssel und lächelt mild. Es ist lange her, dass jemand freundlich zu dir war."
     },
     B: {
       label: "❄️ Bleiben",
@@ -39,19 +39,19 @@ const CHOICE_CONFIG = {
   "3": {
     question: "Wie lautet die Lösung?",
     A: {
-      label: "1",
+      label: "6",
       points: 0,
       text: "Dimitri seufzt: 'Das ist leider falsch.'"
     },
     B: {
-      label: "2",
-      points: 0,
-      text: "Dimitri seufzt: 'Das ist leider falsch.'"
+      label: "9",
+      points: 4,
+      text: "Dimitri grinst: 'Hervorragend Junge, das ist richtig!'"
     },
     C: {
-      label: "4",
-      points: 3,
-      text: "Dimitri grinst: 'Das ist richtig!'"
+      label: "12",
+      points: 0,
+      text: "Dimitri seufzt: 'Das ist leider falsch.'"
     }
   },
 
