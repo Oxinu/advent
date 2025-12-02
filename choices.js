@@ -41,34 +41,38 @@ const CHOICE_CONFIG = {
     A: {
       label: "6",
       points: 0,
-      text: "Dimitri seufzt: 'Das ist leider falsch.'"
+      text: "Dimitri seufzt: 'Das ist leider falsch.' Hungrig und enttäuscht ziehst du weiter."
     },
     B: {
       label: "9",
       points: 4,
-      text: "Dimitri grinst: 'Hervorragend Junge, das ist richtig!'"
+      text: "Dimitri grinst: 'Hervorragend Junge, das ist richtig!' Er reicht dir ein Stück warmes Fladenbrot, etwas Trockenfleisch und Käse. Gestärkt und stolz machst du dich auf den weiteren Weg."
     },
     C: {
       label: "12",
       points: 0,
-      text: "Dimitri seufzt: 'Das ist leider falsch.'"
+      text: "Dimitri seufzt: 'Das ist leider falsch.' Hungrig und enttäuscht ziehst du weiter."
+    },
+    D: {
+      label: "18",
+      points: 0,
+      text: "Dimitri seufzt: 'Das ist leider falsch.' Hungrig und enttäuscht ziehst du weiter."
     }
   },
 
   "4": {
     question: "Was möchtest du tun?",
     A: {
-      label: "Bewohner um Ausrüstung bitten",
+      label: "Die beiden Frauen um Ausrüstung bitten",
       points: 2,
-      text: "Die Bewohner sind freundlich – du bekommst für deine beschwerliche Reise einen Feuerstein und ein Messer.",
+      text: "Die beiden Frauen hören sofot auf miteinder zu tuscheln, als Du Dich näherst. Die kleinere von beiden beobachtet Dich mißtrauisch, als Du Dein Anliegen schilderst. Die größere scheint aber mit Dir Mitleid zu haben, lächelt freundlich, und schenkt Dir für deine beschwerliche Reise einen Feuerstein und ein Messer.",
       // Beispiel-Items, die der Spieler erhält:
       items: ["Feuerstein", "Messer"]
     },
     B: {
       label: "Einfach losgehen",
       points: 0,
-      text: "Du möchtest keine Zeit vergeuden und marschierst sofort los."
-    }
+      text: "Du möchtest keine Zeit vergeuden und marschierst an den beiden Frauen vorbei. Die Wachen am Stadttor beachten Dich nicht weiter. Draußen beginnt der große, weiße Wald. Du atmest tief ein - und bist bereit."  }
   },
 
   "5": {
@@ -275,6 +279,10 @@ const CHOICE_CONFIG = {
 
           console.log('Aktueller Gesamt-Punktestand:', score);
           console.log('Aktuelles Inventar:', items);
+          // ➜ Hier: Kalender-Logik updaten
+          if (typeof window.relockDoors === 'function') {
+            window.relockDoors();
+  }
         });
       });
 
