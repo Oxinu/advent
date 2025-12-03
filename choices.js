@@ -65,7 +65,7 @@ const CHOICE_CONFIG = {
     A: {
       label: "Die beiden Frauen um Ausrüstung bitten",
       points: 2,
-      text: "Die beiden Frauen hören sofot auf miteinder zu tuscheln, als Du Dich näherst. Die kleinere von beiden beobachtet Dich mißtrauisch, als Du Dein Anliegen schilderst. Die größere scheint aber mit Dir Mitleid zu haben, lächelt freundlich, und schenkt Dir für deine beschwerliche Reise einen Feuerstein und ein Messer.",
+      text: "Die beiden Frauen hören sofort auf miteinander zu tuscheln, als Du Dich näherst. Die kleinere von beiden beobachtet Dich mißtrauisch, als Du Dein Anliegen schilderst. Die größere scheint aber mit Dir Mitleid zu haben, lächelt freundlich, und schenkt Dir für deine beschwerliche Reise einen Feuerstein und ein Messer.",
       // Beispiel-Items, die der Spieler erhält:
       items: ["Feuerstein", "Messer"]
     },
@@ -87,8 +87,39 @@ const CHOICE_CONFIG = {
       points: 0,
       text: "Da die Stelle nicht sicher ist, beschließt du, schnell weiterzulaufen und den Fuchs seinem Schicksal zu überlassen."
     }
+  },
+
+    "6": {
+    question: "Wie entscheidest Du Dich?",
+    A: {
+      label: "Du isst die Suppe und lässt Jaro zu Dir ans Feuer kommen",
+      points: 3,
+      text: "Die warme Suppe tut Dir gut. Jaro lächelt und ist froh, in dieser kalten Nacht Anschluß gefunden zu haben. Er erzählt von sich, und seine Geschichte ähnelt Deiner sehr.\n"
+      + "Jaro scheint ein netter Kerl zu sein, und Du bist glücklich, nun einen Weggefährten zu haben."
+    },
+    B: {
+      label: "Du lehnst ab",
+      points: 0,
+      text: "Du bist misstrauisch und möchtest lieber für dich allein sein. Jaro wirkt enttäuscht, dreht sich um und schlägt etwas weiter am Waldrand sein Lager auf. Du fragst dich, ob deine Entscheidung richtig war.\n" 
+      + "Am nächsten Morgen brichst du früh auf. Nach einiger Zeit bemerkst du, dass Jaro dir in etwas Abstand folgt. Er pfeift ein fröhliches Lied. Schließlich entscheidest du, dass dir ein wenig Gesellschaft doch guttun würde, bleibst stehen und wartest auf ihn. Jaro strahlt, und ihr beide freut euch, nun doch einen Weggefährten an eurer Seite zu haben."
+    }
+  },
+
+    "7": {
+    question: "Wie entscheidest Du Dich?",
+    A: {
+      label: "Darauf zugehen",
+      points: 1,
+      text: "Ihr biegt vom Pfad ab und kämpft euch durch tiefen Schnee. Das Licht bleibt fern, verschwindet dann hinter den Wolken. Ein unheimliches Gefühl bleibt zurück."
+    },
+    B: {
+      label: "Die Wanderung fortsetzen",
+      points: 1,
+      text: "'Wir verlaufen uns nur', sagst du.  Ihr bleibt auf dem Pfad. Das Licht verblasst hinter euch – und du fragst dich, ob du etwas Wichtiges verpasst hast."
+    }
   }
 };
+
 
 // -------------------------------------------
 // B) LOGIK FÜR ENTSCHEIDUNGEN (CODE)

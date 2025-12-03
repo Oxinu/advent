@@ -445,6 +445,11 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
+.choice-result {
+  white-space: pre-line;  /* \n im Text wird als Zeilenumbruch angezeigt */
+}
+
+
 /* Stil fÃ¼r die Frage der Entscheidung */
 .choice-question {
   font-weight: bold;
