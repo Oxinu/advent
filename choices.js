@@ -117,6 +117,50 @@ const CHOICE_CONFIG = {
       points: 1,
       text: "'Wir verlaufen uns nur', sagst du.  Ihr bleibt auf dem Pfad. Das Licht verblasst hinter euch – und du fragst dich, ob du etwas Wichtiges verpasst hast."
     }
+  },
+    "8": {
+    question: "Was tust Du?",
+    A: {
+      label: "🐾 Hochklettern",
+      points: 2,
+      text: "Du kletterst vorsichtig hinauf, die Finger steif vor Kälte. Kurz bevor du die Katze erreichst, bricht ein Ast – du fällst in den Schnee, die Katze mit dir. Ihr kommt unsanft, aber lebendig unten an. Die Frau dankt dir unter Tränen und drückt dir etwas Proviant in die Hand."
+    },
+    B: {
+      label: "🪓 den Baum absägen",
+      points: 0,
+      text: "Du entscheidest, dass es zu gefährlich ist zu klettern. Jaro findet eine alte Axt am Schuppen. Gemeinsam sägt ihr den Baum an, bis er mit einem Krachen fällt. Die Katze schreit auf – als ihr sie findet, ist sie still. Die Frau sinkt schluchzend zu Boden. Eine unangenehme Schwere legt sich auf dein Herz."
+    },
+    C: {
+      label: "🍗 mit Futter locken",
+      points: 4,
+      text: "Du nimmst ein kleines Stück deines letzten Brotes und streckst es nach oben.\n"
+      + "Leise und geduldig redest du auf die Katze ein. Nach einer Weile tastet sie sich vorsichtig den Stamm hinunter, immer dem Geruch folgend. Unten springt sie der alten Frau in die Arme.\n"
+      + "'Du hast ein gutes Herz', sagt sie und holt etwas aus ihrer Schürze: einen unscheinbaren, alten Schlüssel. 'Er soll alles öffnen können, was verschlossen ist. Nimm ihn – du wirst ihn noch brauchen.'",
+      items: ["Alter Schlüssel"]
+    }
+  },
+
+  "9": {
+    question: "Wie reagierst du?",
+    A: {
+      label: "🚶 Mitgehen",
+      points: 2,
+      text: "Du beschließt, keinen Ärger zu machen. Die Wachen führen euch in einen kleinen Wachposten am Waldrand. Nach einer groben Befragung stellen sie fest, dass ihr tatsächlich nichts bei euch habt, was gestohlen aussieht.\n"
+      + "'Vielleicht haben wir uns geirrt', murmelte einer. Zum Abschied drückt dir der jüngste Wachmann heimlich eine Münze in die Hand. 'Für etwas Warmes…', flüstert er.",
+      items: ["Kupfermünze"]
+    },
+    B: {
+      label: "⚔️ Kämpfen",
+      points: 1,
+      text: "Du reißt den Arm los und gehst auf die Wachen los. Für einen Moment glaubst du, du könntest dich befreien – doch sie sind zu dritt, stark und in Rüstung. Du wirst zu Boden gestoßen, dein Arm schmerzt. Einer lacht rau. 'Der ist verrückt.' Er bindet dir aus einem Lederband ein grobes Armband um. 'Damit man dich wiedererkennt.'\n"
+      + "Sie lassen euch ziehen, aber du spürst ihre Blicke im Rücken. Und dieses 'Verrückten-Armband' fühlt sich an wie ein Stempel.",
+      items: ["Verrückten-Armband"]
+    },
+    C: {
+      label: "🏃 Rennen",
+      points: 0,
+      text: "Ohne zu überlegen, stößt du die Wache vor dir zur Seite und sprintest los. Jaro hechtet hinterher. Pfeile zischen an euch vorbei, aber keiner trifft. Der Wald verschluckt euch, bis ihr keuchend hinter einem umgestürzten Baumstamm in Deckung geht."
+    }
   }
 };
 
