@@ -161,7 +161,45 @@ const CHOICE_CONFIG = {
       points: 0,
       text: "Ohne zu überlegen, stößt du die Wache vor dir zur Seite und sprintest los. Jaro hechtet hinterher. Pfeile zischen an euch vorbei, aber keiner trifft. Der Wald verschluckt euch, bis ihr keuchend hinter einem umgestürzten Baumstamm in Deckung geht."
     }
+  },
+
+   "10": {
+    question: "Was tust Du?",
+    A: {
+      label: "📣 Nach Hilfe rufen",
+      points: 2,
+      text: "'Jaro! Ich komme hier nicht alleine hoch!'\n"
+      + "Nach einer Weile hörst du ein Rascheln. Jaro hat ein altes Seil gefunden. Er lässt es zu dir hinunter, du klammerst dich fest, und mit viel Ziehen, Rutschen und Fluchen schafft ihr es gemeinsam. Oben fallt ihr lachend in den Schnee – vor Erleichterung, nicht weil es lustig war."
+    },
+    B: {
+      label: "🧗 Selbst herausklettern",
+      points: 2,
+      text:"Du ballst die Fäuste. 'Ich versuch’s allein!' Mit Händen und Füßen suchst du nach kleinsten Vorsprüngen im Fels. Stück für Stück drückst du dich hoch, die Muskeln brennen, die Finger sind taub.\n"
+      + "Als du oben ankommst, steht Jaro mit offenem Mund da. 'Du bist verrückt', sagt er – und klopft dir stolz auf die Schulter. Ein kleines Glitzern von Selbstvertrauen bleibt in dir zurück."
+    }
+  },
+
+"14": {
+  question: "Wem folgst du?",
+  A: { label: "👵 Hildegard", text: "Hildegard lächelt. Ihr geht Seite an Seite aus dem Park heraus.", route: "good" },
+  B: { label: "🕶️ Varo", text: "Varo grinst. 'Eine gute Wahl - wir werden gemeinsam aufregende Zeiten erleben!'", route: "evil" }
+},
+
+
+    "15": {
+    question: "Wie entscheidest du dich?",
+    A: {
+      label: "A) Entscheidung 15",
+      points: 1,
+      text: "Ergebnis Tag 15 – A"
+    },
+    B: {
+      label: "B) Entscheidung 15",
+      points: 1,
+      text: "Ergebnis Tag 15 – B"
+    }
   }
+
 };
 
 
@@ -286,6 +324,35 @@ const CHOICE_CONFIG = {
     let score   = loadScore();
     let items   = loadItems();
 
+
+function inferRouteFromDay14(st) {
+  // Falls route fehlt, aber Tag 14 schon gewählt wurde: aus CHOICE_CONFIG ableiten
+  if (!st.route && st["14"] && cfg["14"] && cfg["14"][st["14"]] && cfg["14"][st["14"]].route) {
+    st.route = cfg["14"][st["14"]].route; // "good" / "evil"
+    saveState(st);
+  }
+  return st.route || "good";
+}
+
+function updateAllRouteTexts() {
+  const freshState = loadState();
+  const route = inferRouteFromDay14(freshState);
+
+  document.querySelectorAll(".route-text[data-day]").forEach(el => {
+    const goodText = el.getAttribute("data-good") || "";
+    const evilText = el.getAttribute("data-evil") || goodText;
+
+    el.textContent = (route === "evil") ? evilText : goodText;
+  });
+}
+
+// Initial setzen
+updateAllRouteTexts();
+
+// Beim Öffnen/Wechseln eines Türchens (#dayXX) erneut setzen
+window.addEventListener("hashchange", updateAllRouteTexts);
+
+
     // Alle Boxen mit Entscheidungen durchgehen
     document.querySelectorAll('.choices').forEach(box => {
       const day  = box.dataset.day;  // z. B. "1"
@@ -335,6 +402,12 @@ const CHOICE_CONFIG = {
               }
             });
             saveItems(items);
+          }
+
+          // Route speichern, falls definiert (für 2 Stränge ab Tag 15)
+          if (cData.route) {
+            state.route = cData.route; // "good" oder "evil"
+            updateAllRouteTexts();  // <<< wichtig: sofort updaten
           }
 
           // in localStorage speichern
