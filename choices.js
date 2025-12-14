@@ -179,26 +179,25 @@ const CHOICE_CONFIG = {
     }
   },
 
-"14": {
-  question: "Wem folgst du?",
-  A: { label: "👵 Hildegard", text: "Hildegard lächelt. Ihr geht Seite an Seite aus dem Park heraus.", route: "good" },
-  B: { label: "🕶️ Varo", text: "Varo grinst. 'Eine gute Wahl - wir werden gemeinsam aufregende Zeiten erleben!'", route: "evil" }
-},
+  "14": {
+    question: "Wem folgst du?",
+    A: { label: "👵 Hildegard", text: "Hildegard lächelt. Ihr geht Seite an Seite aus dem Park heraus.", route: "good" },
+    B: { label: "🕶️ Varo", text: "Varo grinst. 'Eine gute Wahl - wir werden gemeinsam aufregende Zeiten erleben!'", route: "evil" }
+  },
 
 
-    "15": {
-    question: "Wie entscheidest du dich?",
-    A: {
-      label: "A) Entscheidung 15",
-      points: 1,
-      text: "Ergebnis Tag 15 – A"
-    },
-    B: {
-      label: "B) Entscheidung 15",
-      points: 1,
-      text: "Ergebnis Tag 15 – B"
-    }
+"15": {
+  question: "Wie entscheidest du dich?",
+  good: {
+    A: { label: "🔑 Den Schlüssel annehmen", points: 2, text: "Du nimmst ihn vorsichtig. Er fühlt sich überraschend schwer an – fast so, als würde er etwas von deiner alten Welt in sich tragen.", items: ["Alter Schlüssel"] },
+    B: { label: "🙅 Höflich ablehnen", points: 2, text: "‘Ich kann nicht noch mehr von dir annehmen’, sagst du. Hildegard lächelt milde und legt den Schlüssel in eine Schublade. ‘Dann bleibt er hier, bis du ihn vielleicht doch brauchst.’" }
+  },
+  evil: {
+    C: { label: "🗡️ Das Messer annehmen", points: 0, text: "Du nimmst es an dich. Es fühlt sich falsch – und gleichzeitig beruhigend – an, etwas zur Verteidigung zu haben.", items: ["Messer"] },
+    D: { label: "🙅 Ablehnen", points: 2, text: "‘Ich will keine Waffen’, sagst du. Der Händler schnaubt verächtlich. Varo hebt nur eine Augenbraue. ‘Mutig’, meint er. ‘Oder dumm. Das wird sich zeigen.’" }
   }
+}
+
 
 };
 
@@ -320,9 +319,13 @@ const CHOICE_CONFIG = {
     updatePlayerDisplay(playerName);
     attachPlayerSwitcher();
 
-    const state = loadState();
+    let state = loadState();
     let score   = loadScore();
     let items   = loadItems();
+    // Route einmal sauber ableiten und im state fixieren
+    state.route = inferRouteFromDay14(state);
+    saveState(state);
+
 
 
 function inferRouteFromDay14(st) {
@@ -346,112 +349,172 @@ function updateAllRouteTexts() {
   });
 }
 
-// Initial setzen
-updateAllRouteTexts();
+function updateAllRouteDoorLabels() {
+  const st = loadState();
+  const route = st.route || "good";
 
-// Beim Öffnen/Wechseln eines Türchens (#dayXX) erneut setzen
-window.addEventListener("hashchange", updateAllRouteTexts);
+  document.querySelectorAll('.route-label').forEach(el => {
+    const good = el.dataset.good;
+    const evil = el.dataset.evil;
+    if (!good || !evil) return;
+
+    el.textContent = (route === "evil") ? evil : good;
+  });
+}
+
+function updateOpenDayTitleFromDoor() {
+  const hash = location.hash;
+  if (!hash.startsWith('#day')) return;
+
+  const day = hash.replace('#day', '');
+  const titleEl = document.getElementById(`title-day${day}`);
+  if (!titleEl) return;
+
+  const doorLabel = document.querySelector(
+    `.door a[href="#day${day}"] .route-label`
+  );
+  if (!doorLabel) return;
+
+  const labelText = doorLabel.textContent.trim();
+  titleEl.textContent = `Tag ${day} – ${labelText}`;
+}
 
 
-    // Alle Boxen mit Entscheidungen durchgehen
-    document.querySelectorAll('.choices').forEach(box => {
-      const day  = box.dataset.day;  // z. B. "1"
-      const data = cfg[day];
 
-      if (!data) return;
+function getVariantDataForDay(day, st) {
+  const data = cfg[day];
+  if (!data) return null;
+  const route = (st.route || "good");
+  if (data.good || data.evil) {
+    return (route === "evil") ? data.evil : data.good;
+  }
+  return data; // nicht route-abhängig
+}
 
-      const qEl   = box.querySelector('.choice-question');
-      const resEl = box.querySelector('.choice-result');
-      const btns  = box.querySelectorAll('.choice-btn');
+function renderChoicesBox(box) {
+  const day = box.dataset.day;
+  const data = cfg[day];
+  if (!data) return;
 
-      if (qEl) {
-        qEl.textContent = data.question;
+  // immer frischen State verwenden (Route kann sich an Tag 14 ändern)
+  state = loadState();
+  state.route = inferRouteFromDay14(state);
+
+  const variantData = getVariantDataForDay(day, state);
+
+  const qEl   = box.querySelector('.choice-question');
+  const resEl = box.querySelector('.choice-result');
+  const btns  = box.querySelectorAll('.choice-btn');
+
+  if (qEl) qEl.textContent = data.question;
+
+  // Buttons: Sichtbarkeit + Label + Click-Handler
+  btns.forEach(btn => {
+    const choiceKey = btn.dataset.choice;
+    const c = variantData ? variantData[choiceKey] : null;
+
+    if (!c) {
+      btn.style.display = 'none';
+      btn.textContent = '';
+      btn.disabled = true;
+      btn.classList.remove('chosen');
+      btn.onclick = null;
+      return;
+    }
+
+    btn.style.display = '';
+    btn.textContent = c.label;
+    btn.disabled = false;
+    btn.classList.remove('chosen');
+
+    // onclick statt addEventListener: verhindert doppelte Handler bei Re-Render
+    btn.onclick = () => {
+      // State beim Klick frisch laden (Route könnte gerade geändert worden sein)
+      state = loadState();
+      state.route = inferRouteFromDay14(state);
+
+      // bereits gewählt? -> nichts tun
+      if (state[day]) return;
+
+      const liveVariant = getVariantDataForDay(day, state);
+      const liveC = liveVariant && liveVariant[choiceKey];
+      if (!liveC) return;
+
+      state[day] = choiceKey;
+
+      if (typeof liveC.points === 'number') {
+        score += liveC.points;
       }
 
-      // Buttons vorbereiten
-      btns.forEach(btn => {
-        const choiceKey = btn.dataset.choice; // "A", "B", "C"
-        const cData = data[choiceKey];
-
-        if (!cData) {
-          // Falls z. B. Button C existiert, aber für diesen Tag nicht genutzt wird
-          btn.style.display = 'none';
-          return;
-        }
-
-        btn.textContent = cData.label;
-
-        // Klick-Handler
-        btn.addEventListener('click', () => {
-          // Wenn für diesen Tag schon gewählt wurde -> nichts mehr ändern
-          if (state[day]) return;
-
-          // Wahl merken
-          state[day] = choiceKey;
-
-          // Punkte addieren
-          if (typeof cData.points === 'number') {
-            score += cData.points;
-          }
-
-          // Items vergeben, falls definiert
-          if (Array.isArray(cData.items) && cData.items.length > 0) {
-            cData.items.forEach(item => {
-              if (!items.includes(item)) {
-                items.push(item);
-              }
-            });
-            saveItems(items);
-          }
-
-          // Route speichern, falls definiert (für 2 Stränge ab Tag 15)
-          if (cData.route) {
-            state.route = cData.route; // "good" oder "evil"
-            updateAllRouteTexts();  // <<< wichtig: sofort updaten
-          }
-
-          // in localStorage speichern
-          saveState(state);
-          saveScore(score);
-
-          // Ergebnistext anzeigen (ohne Punkteanzeige)
-          if (resEl) {
-            resEl.textContent = cData.text;
-          }
-
-          // Buttons deaktivieren und Auswahl markieren
-          btns.forEach(b => {
-            b.disabled = true;
-            b.classList.toggle('chosen', b === btn);
-          });
-
-          console.log('Aktueller Gesamt-Punktestand:', score);
-          console.log('Aktuelles Inventar:', items);
-          // ➜ Hier: Kalender-Logik updaten
-          if (typeof window.relockDoors === 'function') {
-            window.relockDoors();
-  }
+      if (Array.isArray(liveC.items) && liveC.items.length > 0) {
+        liveC.items.forEach(item => {
+          if (!items.includes(item)) items.push(item);
         });
+        saveItems(items);
+      }
+
+      if (liveC.route) {
+        state.route = liveC.route;
+      }
+
+      saveState(state);
+      saveScore(score);
+
+      if (resEl) resEl.textContent = liveC.text;
+
+      btns.forEach(b => {
+        const key = b.dataset.choice;
+        if (liveVariant && liveVariant[key]) b.disabled = true;
+        b.classList.toggle('chosen', b === btn);
       });
 
-      // Bereits getroffene Wahl wiederherstellen
-      if (state[day]) {
-        const chosenKey  = state[day];
-        const chosenData = data[chosenKey];
+      // Route-Wechsel / UI neu (Texte + Buttons)
+      updateAllRouteUI();
 
-        if (chosenData && resEl) {
-          resEl.textContent = chosenData.text;
-        }
-
-        btns.forEach(b => {
-          b.disabled = true;
-          if (b.dataset.choice === chosenKey) {
-            b.classList.add('chosen');
-          }
-        });
+      if (typeof window.relockDoors === 'function') {
+        window.relockDoors();
       }
+    };
+  });
+
+  // Falls schon gewählt: Ergebnis + disabled/chosen korrekt setzen
+  if (state[day]) {
+    const chosenKey = state[day];
+    const chosenData = variantData && variantData[chosenKey];
+
+    if (chosenData && resEl) resEl.textContent = chosenData.text;
+
+    btns.forEach(b => {
+      const key = b.dataset.choice;
+      if (variantData && variantData[key]) b.disabled = true;
+      if (key === chosenKey) b.classList.add('chosen');
     });
+  } else {
+    if (resEl) resEl.textContent = '';
   }
+}
+
+function updateAllRouteChoices() {
+  // Du kannst hier optional auf Tage >= 15 filtern – ich halte es bewusst simpel:
+  document.querySelectorAll('.choices').forEach(renderChoicesBox);
+}
+
+function updateAllRouteUI() {
+  updateAllRouteTexts();
+  updateAllRouteChoices();
+  updateAllRouteDoorLabels(); 
+  updateOpenDayTitleFromDoor();
+}
+
+
+    // Initial setzen
+    updateAllRouteUI();
+
+    // Beim Öffnen/Wechseln eines Türchens erneut setzen
+    window.addEventListener("hashchange", updateAllRouteUI);
+
+
+  }     // <-- Ende: initChoices()
 
   document.addEventListener('DOMContentLoaded', initChoices);
-})();
+})();   // <-- Ende: IIFE
