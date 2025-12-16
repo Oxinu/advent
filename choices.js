@@ -548,9 +548,9 @@ function updateAllRouteUI() {
   updateAllRouteDoorLabels(); 
   updateOpenDayTitleFromDoor();
 }
+ 
 
-
-    // Initial setzen
+    // Initial setzenx
     updateAllRouteUI();
 
     // Beim Öffnen/Wechseln eines Türchens erneut setzen
