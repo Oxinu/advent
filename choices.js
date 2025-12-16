@@ -208,7 +208,37 @@ const CHOICE_CONFIG = {
     C: { label: "Du öffnest die Kiste", points: 2, text: "Du klappst den Deckel auf und findest ein Stück seltsam gebogenes, schimmerndes Metall. Schnell klappst Du die wieder zu, und gehst zurück zu Varo." },
     D: { label: "Du lässt sie geschlossen", points: 1, text: "Du nimmst die Kiste, ohne hineinzusehen. Manchmal ist nicht zu wissen die klügere Art, ruhig zu bleiben." }
   }
+},
+
+"17": {
+  question: "Was möchtest du tun?",
+  good: {
+    A: {
+      label: "Hildegard fragen, was das grüne Flimmern bedeutet",
+      points: 2,
+      text: "Du deutest in den Himmel. Hildegards Blick wird ernst. 'Das ist das Tor… oder ein Echo davon', sagt sie leise. 'Wenn es flackert, nähert sich etwas. Und nicht alles, was näherkommt, ist gut.'"
+    },
+    B: {
+      label: "Es ignorieren und den Moment genießen",
+      points: 0,
+      text: "Du zwingst dich zu einem Lächeln und fährst weiter, als wäre nichts gewesen. Doch das grüne Flimmern bleibt in deinem Kopf – wie ein Schatten, der dir folgt, auch wenn du ihn nicht ansiehst."
+    }
+  },
+  evil: {
+    C: {
+      label: "🤝 Varo Mut machen und ihm zuhören",
+      points: 2,
+      text: "Du sagst ihm, dass er nicht allein ist. Varo antwortet nicht sofort, aber sein Grinsen wirkt einen Moment weniger hart. 'Vielleicht', murmelt er. 'Vielleicht verstehst du das hier schneller als die anderen.'"
+    },
+    D: {
+      label: "🧊 Schweigen und nichts preisgeben",
+      points: 0,
+      text: "Du lässt die Stille stehen. Varo nickt langsam, als hätte er genau das erwartet. 'Okay', sagt er nur. Doch du spürst: Abstand ist hier auch eine Entscheidung."
+    }
+  }
 }
+
+
 
 
 
