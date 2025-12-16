@@ -727,16 +727,42 @@
     <div class="dialog">
       <article class="card">
         <div class="story-head">
-          <h2 id="title-day16">Tag 16 – Lerntage</h2>
+          <h2 id="title-day16">Tag 16</h2>
           <a class="close" href="#" aria-label="Schließen">× schließen</a>
         </div>
         <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
         <div class="story">
-          <p>Du entdeckst eine alte verriegelte Holztür im Hinterhof.</p>
-        </div>
-      </article>
+ <!-- Dieser Text wird per JS je nach Route überschrieben -->
+         <p class="route-text"
+          data-day="16"
+            data-good="Am nächsten Morgen zeigt dir Hildegard einen Ort voller Stimmen und Lachen.
+            Es ist eine Schule – doch nicht so, wie du sie kennst.
+            Tafeln schweben frei in der Luft, Wörter schreiben sich von selbst, und warmes Licht fällt durch hohe Fenster. 
+            Niemand mustert dich misstrauisch. Niemand fragt, woher du kommst oder warum deine Kleidung so fremd wirkt.
+            Du darfst ein kleines Lichterrätsel lösen. Es erinnert dich an Dimitri – und daran, dass du mehr kannst, als du dir selbst zutraust. 
+            Als das letzte Licht aufleuchtet, klatscht die Lehrerin freudig in die Hände.
+            Ein Junge mit dunklen Locken setzt sich neben dich.
+            'Ich bin Kiro', sagt er grinsend. 'Kommst du morgen wieder?'
+            Zum ersten Mal seit langer Zeit fühlst du dich nicht geduldet – sondern willkommen."
+            data-evil="Am nächsten Tag führt Varo dich zu einem Laden, dessen Besitzer schon bei eurem Anblick blass wird. Er wischt sich die Hände an der Schürze ab, obwohl sie längst trocken sind.
+            'Er schuldet uns Ware', sagt Varo ruhig. Nicht wütend, nicht laut – gerade deshalb wirkt es schwerer. 'Geh rein. Hol sie.'
+            Du betrittst den Laden. Hinter dem Tresen steht eine Kiste, als hätte sie dort schon immer gewartet. Der Besitzer hebt beide Hände.
+            'Die gehört euch', sagt er schnell. 'Nehmt sie… bitte.'
+            Es ist zu leicht. Zu glatt. Als wäre das hier nur die Oberfläche von etwas Tieferem.">Text für 15 - good
+          </p>
+      <!-- Entscheidungs-Bereich für Tag 15 -->
+      <div class="choices" data-day="16">
+      <p class="choice-question"></p>
+    <div class="choice-buttons">
+      <button class="choice-btn" data-choice="A"></button>
+      <button class="choice-btn" data-choice="B"></button>
+      <button class="choice-btn" data-choice="C"></button>
+      <button class="choice-btn" data-choice="D"></button>
+
     </div>
-  </section>
+    <p class="choice-result"></p>
+  </div>
+</div>
 
   <section id="day17" class="modal" aria-labelledby="title-day17" aria-modal="true" role="dialog">
     <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>

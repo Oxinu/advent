@@ -196,7 +196,20 @@ const CHOICE_CONFIG = {
     C: { label: "🗡️ Das Messer annehmen", points: 0, text: "Du nimmst es an dich. Es fühlt sich falsch – und gleichzeitig beruhigend – an, etwas zur Verteidigung zu haben.", items: ["Messer"] },
     D: { label: "🙅 Ablehnen", points: 2, text: "‘Ich will keine Waffen’, sagst du. Der Händler schnaubt verächtlich. Varo hebt nur eine Augenbraue. ‘Mutig’, meint er. ‘Oder dumm. Das wird sich zeigen.’" }
   }
+},
+
+"16": {
+  question: "Was tust Du?",
+  good: {
+    A: { label: "Du versprichst Kiro, wiederzukommen.", points: 2, text: "Kiro lächelt Dich an und freut sich." },
+    B: { label: "Du bleibst ausweichend.", points: 1, text: "'Ich...muß schauen, habe noch Einiges zu tun' - Du bleibst ausweichend und Kiro nickt verständnisvoll, wenn auch etwas enttäuscht." }
+  },
+  evil: {
+    C: { label: "Du öffnest die Kiste", points: 2, text: "Du klappst den Deckel auf und findest ein Stück seltsam gebogenes, schimmerndes Metall. Schnell klappst Du die wieder zu, und gehst zurück zu Varo." },
+    D: { label: "Du lässt sie geschlossen", points: 1, text: "Du nimmst die Kiste, ohne hineinzusehen. Manchmal ist nicht zu wissen die klügere Art, ruhig zu bleiben." }
+  }
 }
+
 
 
 };
