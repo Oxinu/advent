@@ -236,7 +236,39 @@ const CHOICE_CONFIG = {
       text: "Du lässt die Stille stehen. Varo nickt langsam, als hätte er genau das erwartet. 'Okay', sagt er nur. Doch du spürst: Abstand ist hier auch eine Entscheidung."
     }
   }
+},
+
+"18": {
+  question: "Deine Reaktion:",
+  good: {
+    A: {
+      label: "Dem Lichtschacht folgen",
+      points: 2,
+      text: "Du trittst in den warmen Schimmer. Für einen Moment fühlst du dich schwerelos – dann liegt etwas Kühl-Klares in deiner Hand: eine kleine Glasfigur. Als du blinzelst, ist der Lichtschacht verschwunden. Hildegard nickt langsam. 'Manche Dinge findet man nur, wenn man den Mut hat, einen Schritt zu viel zu gehen.'",
+      items: ["Glasfigur"]
+    },
+    B: {
+      label: "Bei Hildegard bleiben",
+      points: 1,
+      text: "Du trittst zurück. Der Lichtschacht flackert, als hätte er deine Entscheidung verstanden, und schließt sich lautlos. Hildegard legt dir die Hand auf die Schulter. 'Nicht jede Einladung muss angenommen werden', sagt sie ruhig. 'Sicherheit ist manchmal die klügste Wahl.'"
+    }
+  },
+  evil: {
+    C: {
+      label: "🗡️ Messer ziehen und zurückschlagen",
+      points: 2,
+      requiresItems: ["Messer"],
+      text: "Instinktiv ziehst du dein Messer. Das Metall in deiner Hand bringt einen Angreifer zum Zögern – und genau dieser Herzschlag reicht. Varo nutzt die Lücke, du hältst die anderen auf Abstand. Schnee, Atem, ein kurzer Aufschrei – dann weichen sie zurück. Du gewinnst. Aber du spürst auch: Etwas in dir ist kälter geworden."
+    },
+    D: {
+      label: "👊 Mit bloßen Händen kämpfen",
+      points: 1,
+      forbidsItems: ["Messer"],
+      text: "Du wirfst dich mit bloßen Händen in den Kampf. Ein Schlag trifft dich hart, du gehst kurz zu Boden, schmeckst Blut – doch Varo ist da. Mit roher Entschlossenheit treibt er die Angreifer davon. Du bleibst keuchend zurück: verletzt, zitternd… aber lebendig."
+    }
+  }
 }
+
 
 
 
@@ -434,14 +466,50 @@ function getVariantDataForDay(day, st) {
   return data; // nicht route-abhängig
 }
 
+function hasAllItems(inv, needed) {
+  if (!Array.isArray(needed) || needed.length === 0) return true;
+  return needed.every(it => inv.includes(it));
+}
+
+function hasAnyItem(inv, itemsList) {
+  if (!Array.isArray(itemsList) || itemsList.length === 0) return false;
+  return itemsList.some(it => inv.includes(it));
+}
+
+function isChoiceAllowed(choiceObj, inv) {
+  if (!choiceObj) return false;
+
+  // requiresItems: alle müssen vorhanden sein
+  if (choiceObj.requiresItems && !hasAllItems(inv, choiceObj.requiresItems)) return false;
+
+  // forbidsItems: keiner davon darf vorhanden sein
+  if (choiceObj.forbidsItems && hasAnyItem(inv, choiceObj.forbidsItems)) return false;
+
+  return true;
+}
+
+function buildAutoHint(choiceObj) {
+  if (!choiceObj) return "";
+  if (Array.isArray(choiceObj.requiresItems) && choiceObj.requiresItems.length) {
+    return ` (Hinweis: Du hattest ${choiceObj.requiresItems.join(", ")} im Inventar.)`;
+  }
+  if (Array.isArray(choiceObj.forbidsItems) && choiceObj.forbidsItems.length) {
+    return ` (Hinweis: Du hattest ${choiceObj.forbidsItems.join(", ")} nicht im Inventar.)`;
+  }
+  return "";
+}
+
+
+
 function renderChoicesBox(box) {
   const day = box.dataset.day;
   const data = cfg[day];
   if (!data) return;
 
-  // immer frischen State verwenden (Route kann sich an Tag 14 ändern)
+  // frischen State + Inventar laden
   state = loadState();
   state.route = inferRouteFromDay14(state);
+  items = loadItems();
 
   const variantData = getVariantDataForDay(day, state);
 
@@ -451,10 +519,57 @@ function renderChoicesBox(box) {
 
   if (qEl) qEl.textContent = data.question;
 
+  // Welche Buttons existieren im HTML (A/B/C/D)?
+  const presentKeys = Array.from(btns).map(b => b.dataset.choice);
+
+  // Welche Optionen sind erlaubt (existieren + Conditions erfüllt)?
+  const allowedKeys = presentKeys.filter(k => {
+    const raw = variantData && variantData[k];
+    return raw && isChoiceAllowed(raw, items);
+  });
+
+  // ✅ AUTO-RESOLVE: exakt 1 Option möglich → automatisch anwenden, keine Buttons
+  if (!state[day] && allowedKeys.length === 1) {
+    const onlyKey = allowedKeys[0];
+    const onlyChoice = variantData[onlyKey];
+
+    state[day] = onlyKey;
+
+    if (typeof onlyChoice.points === 'number') score += onlyChoice.points;
+
+    if (Array.isArray(onlyChoice.items) && onlyChoice.items.length > 0) {
+      onlyChoice.items.forEach(item => {
+        if (!items.includes(item)) items.push(item);
+      });
+      saveItems(items);
+    }
+
+    if (onlyChoice.route) state.route = onlyChoice.route;
+
+    saveState(state);
+    saveScore(score);
+
+    // Buttons ausblenden
+    const btnWrap = box.querySelector('.choice-buttons');
+    if (btnWrap) btnWrap.style.display = 'none';
+
+    // Text + Hinweis anzeigen
+    if (resEl) resEl.textContent = onlyChoice.text + buildAutoHint(onlyChoice);
+
+    updateAllRouteUI();
+    if (typeof window.relockDoors === 'function') window.relockDoors();
+    return; // wichtig: nicht weiter rendern
+  }
+
+  // Wenn bereits gewählt oder mehrere Optionen: Buttons normal rendern (unten folgt dein btns.forEach)
+
+
   // Buttons: Sichtbarkeit + Label + Click-Handler
   btns.forEach(btn => {
     const choiceKey = btn.dataset.choice;
-    const c = variantData ? variantData[choiceKey] : null;
+    const raw = variantData ? variantData[choiceKey] : null;
+    const c = (raw && isChoiceAllowed(raw, items)) ? raw : null;
+
 
     if (!c) {
       btn.style.display = 'none';
@@ -472,15 +587,13 @@ function renderChoicesBox(box) {
 
     // onclick statt addEventListener: verhindert doppelte Handler bei Re-Render
     btn.onclick = () => {
-      // State beim Klick frisch laden (Route könnte gerade geändert worden sein)
       state = loadState();
       state.route = inferRouteFromDay14(state);
-
-      // bereits gewählt? -> nichts tun
+      items = loadItems(); 
       if (state[day]) return;
-
       const liveVariant = getVariantDataForDay(day, state);
-      const liveC = liveVariant && liveVariant[choiceKey];
+      const liveRaw = liveVariant && liveVariant[choiceKey];
+      const liveC = (liveRaw && isChoiceAllowed(liveRaw, items)) ? liveRaw : null;
       if (!liveC) return;
 
       state[day] = choiceKey;
@@ -507,7 +620,8 @@ function renderChoicesBox(box) {
 
       btns.forEach(b => {
         const key = b.dataset.choice;
-        if (liveVariant && liveVariant[key]) b.disabled = true;
+        const raw2 = liveVariant && liveVariant[key];
+        if (raw2 && isChoiceAllowed(raw2, items)) b.disabled = true;
         b.classList.toggle('chosen', b === btn);
       });
 
@@ -520,22 +634,47 @@ function renderChoicesBox(box) {
     };
   });
 
-  // Falls schon gewählt: Ergebnis + disabled/chosen korrekt setzen
-  if (state[day]) {
-    const chosenKey = state[day];
-    const chosenData = variantData && variantData[chosenKey];
+// Falls schon gewählt: aber Wahl ist nicht (mehr) erlaubt → löschen und neu evaluieren
+if (state[day]) {
+  const chosenKey = state[day];
+  const chosenRaw = variantData && variantData[chosenKey];
 
-    if (chosenData && resEl) resEl.textContent = chosenData.text;
+  if (!chosenRaw || !isChoiceAllowed(chosenRaw, items)) {
+    // ❗ gespeicherte Entscheidung ist ungültig (z.B. Messer-Logik)
+    delete state[day];
+    saveState(state);
+  } else {
+    // gültige Entscheidung → normal anzeigen
+    if (resEl) {
+      const needsHint = (allowedKeys.length === 1);
+      resEl.textContent =
+        chosenRaw.text + (needsHint ? buildAutoHint(chosenRaw) : "");
+    }
 
     btns.forEach(b => {
       const key = b.dataset.choice;
-      if (variantData && variantData[key]) b.disabled = true;
+      const raw2 = variantData && variantData[key];
+      if (raw2 && isChoiceAllowed(raw2, items)) b.disabled = true;
       if (key === chosenKey) b.classList.add('chosen');
     });
-  } else {
-    if (resEl) resEl.textContent = '';
+
+    return; // ⛔ wichtig: nicht weiter rendern
   }
 }
+
+  
+  else {
+    if (resEl) resEl.textContent = '';
+  }
+
+  if (allowedKeys.length === 1) {
+  const btnWrap = box.querySelector('.choice-buttons');
+  if (btnWrap) btnWrap.style.display = 'none';
+}
+
+}
+
+
 
 function updateAllRouteChoices() {
   // Du kannst hier optional auf Tage >= 15 filtern – ich halte es bewusst simpel:
