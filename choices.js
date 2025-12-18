@@ -267,10 +267,34 @@ const CHOICE_CONFIG = {
       text: "Du wirfst dich mit bloßen Händen in den Kampf. Ein Schlag trifft dich hart, du gehst kurz zu Boden, schmeckst Blut – doch Varo ist da. Mit roher Entschlossenheit treibt er die Angreifer davon. Du bleibst keuchend zurück: verletzt, zitternd… aber lebendig."
     }
   }
+},
+"19": {
+  question: "Was tust du?",
+  good: {
+    A: {
+      label: "🌀 Dem Kristall lauschen",
+      points: 2,
+      text: "Du schließt die Augen und konzentrierst dich auf das Summen. Für einen Moment siehst du Bilder: die Schneestadt, den Schattenmarkt, Varo, Hildegart, Jaro – und das Tor, das über allem schwebt. Ein Gefühl von Gefahr legt sich in deine Brust, aber auch von Klarheit. Du weißt: Bald musst du dich entscheiden."
+    },
+    B: {
+      label: "🧓 Dich auf Hildegart verlassen",
+      points: 1,
+      text: "Du drehst dich zu ihr um. „Sag du mir, was richtig ist.“ Hildegart lächelt traurig. „Das kann ich nicht. Aber ich kann an deiner Seite stehen.“ Das Flüstern des Kristalls wird leiser."
+    }
+  },
+  evil: {
+    C: {
+      label: "🌗 Die helle Spiegelgestalt berühren",
+      points: 2,
+      text: "Als deine Finger das Spiegelbild berühren, breitet sich eine unerwartete Wärme in deiner Brust aus. Für einen Moment siehst du dich selbst, wie du zögerst – nicht aus Angst, sondern aus Mitgefühl. Bilder flackern auf: ein Junge, der hilft, obwohl es gefährlich ist. Entscheidungen, die nicht leicht waren, aber richtig. Die Wärme schwindet, und zurück bleibt ein leiser Schmerz: Zweifel. Du spürst: Dieser Weg wäre schwerer gewesen – und genau deshalb bedeutsam. Als du die Hand zurückziehst, fühlst du dich verletzlicher. Aber auch ehrlicher zu dir selbst."
+    },
+    D: {
+      label: "🖤 Die dunkle Spiegelgestalt berühren",
+      points: 1,
+      text: "Die Oberfläche ist eiskalt. Als du sie berührst, wird der Lärm in deinem Kopf still. Du siehst dich selbst – wachsam, entschlossen, ohne Zögern. Kein Mitleid. Kein Bedauern. Nur Klarheit. Die Kälte zieht sich zurück, doch etwas bleibt: eine ruhige Gewissheit. Du hast aufgehört, dich zu fragen, ob es anders gehen könnte. Als du dich abwendest, spürst du weniger Zweifel – und mehr Kontrolle."
+    }
+  }
 }
-
-
-
 
 
 

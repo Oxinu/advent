@@ -6,7 +6,7 @@
   <title>Adventskalender</title>
   <meta name="description" content="Adventskalender – 24 Tage, eine Geschichte." />
   <!-- Zentrales Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=1.62">
+  <link rel="stylesheet" href="styles.css?v=1.64">
 </head>
 <body>
   <!-- Schneefall-Effektx -->
@@ -823,21 +823,39 @@
   </div>
 </section>
 
-  <section id="day19" class="modal" aria-labelledby="title-day19" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day19">Tag 19 – Der Kristall</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+<section id="day19" class="modal" aria-labelledby="title-day19" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day19">Tag 19</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+
+      <div class="story">
+        <p class="route-text"
+           data-day="19"
+           data-good="Ihr kehrt zu einem besonders großen Kristall im Archiv zurück. Er ist fast so groß wie ein Mensch und pulsiert unruhig, als hätte er Schmerzen. „Etwas Dunkles bewegt sich in dieser Stadt“, sagt Hildegart. „Das grüne Tor ist nicht nur eine Tür. Es ist ein Richter.“ Ein grünes Symbol erscheint kurz an der Oberfläche des Kristalls – wie ein Warnzeichen. In diesem Moment hörst du eine leise Stimme in deinem Kopf, als käme sie von sehr weit her: „Zwei Wege warten… wähle weise.“ Hildegart legt dir die Hand auf die Schulter. „Elyas… du bist stärker, als du glaubst.“ Was tust du?"
+           data-evil="Am nächsten Tag führt Varo dich schweigend durch den Schattenmarkt. Ihr sprecht kaum ein Wort. Schließlich bleibt ihr vor einem Gebäude stehen, dessen Mauern dicker wirken als die der umliegenden Häuser. Keine Fenster. Eine schwere Tür. Drinnen steht ein schwarzer Spiegel, höher als ein Mensch. Seine Oberfläche scheint das Licht zu verschlucken – und doch glimmt tief darin ein schwaches Grün, wie ein Echo des Tors. „Man sagt“, beginnt Varo leise, „der Spiegel zeigt dir nicht, wer du bist. Sondern, wer du wirst, wenn niemand dich aufhält.“ Du trittst näher. Dein Spiegelbild teilt sich: links ruhig, wachsam, mit kalten Augen – jemand, der gelernt hat, nicht zu zögern. Rechts zweifelnd, müde, suchend – jemand, der noch fragt, ob es anders gehen könnte. Der Spiegel verlangt keine Worte. Nur eine Berührung. Varo beobachtet dich genau. „Nicht jeder kommt hier mit sich selbst klar“, sagt er. „Du schon.“">
+          Text für 19 - good
+        </p>
+
+        <div class="choices" data-day="19">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
         </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story"> 
-          <p>Text der Kristall</p>
-        </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </article>
+  </div>
+</section>
+
 
   <section id="day20" class="modal" aria-labelledby="title-day20" aria-modal="true" role="dialog">
     <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
@@ -931,8 +949,8 @@
        2) calendar.js -> sperrt Türen, ruft wireOpenSound()
        3) choices-data.js -> Konfiguration für A/B-Entscheidungen
        4) choices.js  -> bindet Entscheidungen an HTML -->
-  <script src="audio.js?v=1.62"></script>
-  <script src="calendar.js?v=1.62"></script>
-  <script src="choices.js?v=1.62"></script>
+  <script src="audio.js?v=1.64"></script>
+  <script src="calendar.js?v=1.64"></script>
+  <script src="choices.js?v=1.64"></script>
 </body>
 </html>
