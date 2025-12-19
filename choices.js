@@ -277,7 +277,7 @@ const CHOICE_CONFIG = {
       text: "Du schließt die Augen und konzentrierst dich auf das Summen. Für einen Moment siehst du Bilder: die Schneestadt, den Schattenmarkt, Varo, Hildegart, Jaro – und das Tor, das über allem schwebt. Ein Gefühl von Gefahr legt sich in deine Brust, aber auch von Klarheit. Du weißt: Bald musst du dich entscheiden."
     },
     B: {
-      label: "🧓 Dich auf Hildegart verlassen",
+      label: "🧓 Dich auf Hildegard verlassen",
       points: 1,
       text: "Du drehst dich zu ihr um. „Sag du mir, was richtig ist.“ Hildegart lächelt traurig. „Das kann ich nicht. Aber ich kann an deiner Seite stehen.“ Das Flüstern des Kristalls wird leiser."
     }
@@ -294,8 +294,156 @@ const CHOICE_CONFIG = {
       text: "Die Oberfläche ist eiskalt. Als du sie berührst, wird der Lärm in deinem Kopf still. Du siehst dich selbst – wachsam, entschlossen, ohne Zögern. Kein Mitleid. Kein Bedauern. Nur Klarheit. Die Kälte zieht sich zurück, doch etwas bleibt: eine ruhige Gewissheit. Du hast aufgehört, dich zu fragen, ob es anders gehen könnte. Als du dich abwendest, spürst du weniger Zweifel – und mehr Kontrolle."
     }
   }
-}
+},
 
+"20": {
+  question: "Wie entscheidest du dich?",
+  good: {
+    A: {
+      label: "💡 Durch das grüne Portal gehen",
+      points: 2,
+      route: "good",
+      text: "Du drehst dich noch einmal zu Hildegard um. „Ich will helfen – nicht herrschen“, sagst du. Für einen Moment scheint etwas in ihrem Blick weich zu werden. Das Portal flackert, bleibt offen – und du trittst hindurch. Der Herzschlag der Luft wird zum Wirbel, und die Schneestadt fällt hinter dir in Licht und Erinnerung zurück."
+    },
+    B: {
+      label: "🕳️ Dich abwenden und Varo suchen",
+      points: 0,
+      route: "evil",
+      text: "Du siehst Hildegard ein letztes Mal an, dann drehst du dich ab. Irgendetwas an der Wildheit dort unten ruft dich – Freiheit, Gefahr, das Versprechen, nie wieder klein zu sein. In einer Seitengasse hörst du später eine vertraute Stimme: „Elyas?“ Varo tritt aus dem Schatten, begleitet von zwei Gestalten, und winkt dir zu. Ein neues Kapitel beginnt."
+    }
+  },
+  evil: {
+    C: {
+      label: "🕶️ Bei Varo bleiben",
+      points: 2,
+      route: "evil",
+      text: "Du machst einen Schritt zurück, weg vom Licht. Das Portal pulsiert ein letztes Mal, als würde es deine Entscheidung prüfen, dann verblasst es. Varo nickt langsam. „Gut“, sagt er. „Dann bist du jetzt wirklich einer von uns.“ Der Schattenmarkt unter euch klingt plötzlich wieder nah – wie ein Herz, das dich nicht mehr loslässt."
+    },
+    D: {
+      label: "🌀 Dem grünen Licht folgen",
+      points: 0,
+      route: "good",
+      text: "Du gehst auf das Portal zu. Für einen flüchtigen Moment glaubst du, eine Gestalt im Licht zu erkennen – schmal, vertraut in der Haltung. Jaro? Oder nur Sehnsucht? Dann reißt dich der Wirbel fort. Der Schattenmarkt verschwindet hinter dir, und du weißt, dass es kein Zurück mehr gibt."
+    }
+  }
+},
+
+"21": {
+  question: "Die Nacht kommt – was geschieht?",
+  good: {
+    A: {
+      label: "🔥 Feuer machen (Feuerstein vorhanden)",
+      points: 2,
+      requiresItems: ["Feuerstein"],
+      text: "Dankbar tastest du in deiner Tasche – der Feuerstein ist noch da. Nach ein paar Versuchen züngelt eine Flamme auf, klein, aber entschlossen. Jaro reibt sich die Hände und grinst schief. „Ich wusste, du hebst manchmal den richtigen Kram auf“, sagt er. Das Feuer wärmt euch, und obwohl die Wildnis dunkel bleibt, fühlt sie sich mit einem Freund und einem Funken Licht weniger feindselig an."
+    },
+    B: {
+      label: "❄️ Ohne Feuer durch die Nacht",
+      points: 0,
+      forbidsItems: ["Feuerstein"],
+      text: "Du wühlst in deiner Tasche, als könntest du Wärme herausschütteln. Nichts. Kein Feuerstein. Kein Wunder. Ihr kauert euch unter einen Felsvorsprung, die Kälte kriecht euch in die Knochen. Schlaf kommt nur in kurzen, wachen Stücken. Jaro sagt irgendwann leise: „Wenn wir das überstehen, schuldet uns die Welt wenigstens ein bisschen Glück.“"
+    }
+  },
+  evil: {
+    C: {
+      label: "🧷 Mit Verrückten-Armband auftreten",
+      points: 1,
+      requiresItems: ["Verrückten-Armband"],
+      text: "Die Blicke treffen dich sofort. Gespräche verstummen, wenn du näherkommst. Du hörst Flüstern: „Der mit dem Armband…“ – und dann Schweigen, als hätte jemand die Luft zugedreht. Niemand weiß genau, warum du es trägst, und gerade das macht dich gefährlich. Manche meiden dich. Andere beobachten dich, als wärst du eine Klinge, die noch nicht entschieden hat, auf wen sie zeigt."
+    },
+    D: {
+      label: "👤 Ohne Armband dazugehören müssen",
+      points: 2,
+      forbidsItems: ["Verrückten-Armband"],
+      text: "Man mustert dich prüfend, aber ohne Furcht. Du bist neu – und das heißt: Du musst dir alles verdienen. Respekt, Vertrauen, einen Platz am Feuer. Varo stellt dich vor: „Elyas. Er gehört jetzt dazu.“ Ein paar nicken. Ein paar lächeln nicht. Und du verstehst: Hier unten ist Macht nichts Lautes. Sie zeigt sich daran, wer bleibt – und wer verschwindet."
+    }
+  }
+},
+
+"22": {
+  question: "",
+  good: {
+    A: {
+      label: "🔑 Den Schlüssel benutzen",
+      points: 2,
+      requiresItems: ["Alter Schlüssel"],
+      text: "Du erinnerst dich an den Schlüssel und ziehst ihn hervor. Das Schloss gibt nur widerwillig nach, als hätte es seit Jahrhunderten niemanden mehr hereingelassen. Mit knirschendem Geräusch öffnet sich das Tor. Dahinter liegt eine Höhle, schwach erleuchtet, als würde sie selbst atmen. Ihr findet eine kleine Kiste voller Silbermünzen. Eure Freude ist groß – nicht wegen des Glanzes, sondern weil es sich anfühlt, als hätte die Welt euch kurz angelächelt."
+    },
+    B: {
+      label: "🚪 Gegen das Tor drücken und weiterziehen",
+      points: 1,
+      forbidsItems: ["Alter Schlüssel"],
+      text: "Ihr versucht es, drückt, rüttelt, sucht nach einem Mechanismus – aber das Tor bleibt stumm und unbeweglich. Jaro schnaubt. „Na gut“, sagt er, „dann eben nicht. Vielleicht hat es nur auf wichtigere Leute gewartet.“ Ihr zieht weiter, und du fragst dich, ob es wirklich nur Pech war – oder eine Prüfung."
+    }
+  },
+  evil: {
+    A: {
+      label: "🙅 Die Flucht ergreifen",
+      points: 0,
+      text: "Dich ergreift Panik und Du ergreifst die Flucht. Später in der Nacht sucht Varo das Gespräch. „Du kannst nicht immer abseits stehen“, sagt er ruhig, aber in seiner Stimme liegt Enttäuschung. Am nächsten Tag begegnen dir die anderen kühler. Im Schattenmarkt zählt, wer handelt – und wer nicht handelt, wird schnell zum Risiko."
+    },
+    B: {
+      label: "🏚️ Den Tresor mit dem Schlüssel öffnen",
+      points: 3,
+      requiresItems: ["Alter Schlüssel"],
+      text: "Du spürst den Schlüssel in deiner Tasche wie einen warmen Gedanken. Du trittst vor. Der Schlüssel passt. Ein leises Klicken – dann öffnet sich der Tresor. Einen Moment lang ist es still, dann bricht ungläubiges Lachen aus. Gold, Münzen, Dokumente, seltsam gebogene Metallstücke – ihr räumt alles leer und verschwindet lautlos. Später fällt dein Name mehr als einmal. Und diesmal klingt er nach Respekt."
+    },
+    C: {
+      label: "🏚️ Mitgehen – ohne Schlüssel abbrechen",
+      points: 1,
+      forbidsItems: ["Alter Schlüssel"],
+      text: "Werkzeuge kratzen, Flüche hallen, Zeit verrinnt. Schließlich knallt jemand die Faust dagegen. Ihr nehmt aus der Halle, was ihr greifen könnt, und zieht euch ohne den Inhalt des Tresors zurück. Niemand beschwert sich laut, aber die Enttäuschung hängt in der Luft wie kalter Rauch."
+    }
+  }
+},
+
+"23": {
+  question: "Wie kommst du durch diese Nacht?",
+  good: {
+    A: {
+      label: "✨ Der Glasfigur folgen",
+      points: 2,
+      requiresItems: ["Glasfigur"],
+      text: "Als ihr euch dem Berg nähert, beginnt die Glasfigur in deiner Tasche zu leuchten – erst schwach, dann klar wie ein Stern. Sie weist euch den Weg, als hätte sie lange darauf gewartet. Jaro starrt sie an. „Bitte sag mir, dass die nicht auch anfängt zu sprechen“, murmelt er. Ihr lacht kurz – und geht trotzdem schneller, weil das Licht euch Mut macht."
+    },
+    B: {
+      label: "🥾 Den Weg ohne Hilfe finden",
+      points: 1,
+      forbidsItems: ["Glasfigur"],
+      text: "Der Weg ist steil und beschwerlich. Ihr rutscht, stolpert, findet den Pfad wieder, verliert ihn erneut. Ein Mönch flüstert ein Gebet, das mehr nach „hoffentlich brechen wir uns nichts“ klingt als nach Heiligkeit. Am Ende erreicht ihr dennoch die Höhe – nicht elegant, aber entschlossen."
+    }
+  },
+  evil: {
+    C: {
+      label: "🗡️ Mit Messer kämpfen",
+      points: 2,
+      requiresItems: ["Messer"],
+      text: "Als die rivalisierende Gang aus dem Dunkel tritt, spürst du instinktiv das Messer an deiner Seite. Du ziehst es, noch bevor der erste Schlag kommt – nicht wild, nicht panisch, sondern gezielt. Du hältst dir Raum frei, zwingst Gegner auf Abstand. Der Kampf ist brutal, chaotisch, aber ihr behauptet euch. Niemand bleibt unversehrt – doch ihr steht am Ende noch. Später findet die Übergabe statt, und die Hehler zählen die Ware mit gierigen Fingern, als wäre Blut nur eine zusätzliche Währung."
+    },
+    D: {
+      label: "🤕 Ohne Messer überleben",
+      points: 0,
+      forbidsItems: ["Messer"],
+      text: "Der erste Treffer kommt schnell. Ein harter Schlag wirft dich zu Boden, Schmerz explodiert hinter deinen Augen. Du siehst nur noch Schnee und Stiefel, hörst Flüche wie aus weiter Ferne. Du überlebst, weil Varo dich packt und aus der Gefahrenzone zieht, während andere den Kampf beenden. Später zitterst du vor Kälte – oder vor der Erkenntnis, wie knapp das war."
+    }
+  }
+},
+
+"24": {
+  question: "Wie endet dein Weg?",
+  good: {
+    A: {
+      label: "🌀 Durch das Tor gehen",
+      points: 2,
+      text: "Ihr tretet gemeinsam näher. Das grüne Portal wirkt wie ein lebendiges Fenster, dessen Licht sanft pulsiert, als würde es euren Atem spiegeln. Die Luft vibriert, und für einen Moment scheint alles stillzustehen. Jaro drückt deine Hand fester. „Egal, was kommt“, sagt er leise, „diesmal gehen wir nicht allein.“ Ihr macht den Schritt. Das Licht umhüllt euch, warm und fremd zugleich, und während die Welt hinter euch verblasst, spürst du keine Angst – nur gespannte Neugier. Irgendwo jenseits des Lichts wartet eine neue Stadt, ein neues Abenteuer, und ihr seid bereit, es gemeinsam zu beginnen."
+    },
+    B: {
+      label: "🏡 Bleiben und in eurer Welt neu beginnen",
+      points: 2,
+      text: "Ihr bleibt stehen. Das Portal pulsiert weiter, als würde es auf euch warten, doch du spürst, dass dein Weg hier endet – zumindest dieser. Jaro sieht dich an, ein schiefes Lächeln im Gesicht. „Vielleicht haben wir genug Wunder gesehen“, murmelt er. Du nickst, und obwohl dir die Augen brennen, fühlt sich die Entscheidung richtig an. Am nächsten Morgen brecht ihr auf. Kein Wirbel, kein Licht, nur Schnee, Wind und der erste Schritt in ein neues, selbstgewähltes Leben. Mit einem Freund an deiner Seite fühlt sich selbst die weite, offene Welt plötzlich wie ein Zuhause an."
+    }
+  }
+}
 
 
 };
@@ -422,8 +570,9 @@ const CHOICE_CONFIG = {
     let score   = loadScore();
     let items   = loadItems();
     // Route einmal sauber ableiten und im state fixieren
-    state.route = inferRouteFromDay14(state);
-    saveState(state);
+state.route = state.route || inferRouteFromDay14(state);
+saveState(state);
+
 
 
 
@@ -436,11 +585,29 @@ function inferRouteFromDay14(st) {
   return st.route || "good";
 }
 
-function updateAllRouteTexts() {
+function routeForDay(day, st) {
+  const d = Number(day);
+
+  // Basisroute (aus Tag 14 oder st.route)
+  const base = inferRouteFromDay14(st);
+
+  // Ab Tag 21 gilt routeB, falls gesetzt
+  if (d >= 21 && st.routeB) return st.routeB;
+
+  // Bis Tag 20 bleibt alles in der Basisroute
+  return base;
+}
+
+
+
+function updateAllRouteTexts(skipDay = null) {
   const freshState = loadState();
-  const route = inferRouteFromDay14(freshState);
 
   document.querySelectorAll(".route-text[data-day]").forEach(el => {
+    const day = el.getAttribute("data-day");
+    if (skipDay && String(day) === String(skipDay)) return; // <- NEU
+
+    const route = routeForDay(day, freshState);
     const goodText = el.getAttribute("data-good") || "";
     const evilText = el.getAttribute("data-evil") || goodText;
 
@@ -448,33 +615,52 @@ function updateAllRouteTexts() {
   });
 }
 
+
 function updateAllRouteDoorLabels() {
   const st = loadState();
-  const route = st.route || "good";
 
-  document.querySelectorAll('.route-label').forEach(el => {
-    const good = el.dataset.good;
-    const evil = el.dataset.evil;
-    if (!good || !evil) return;
+  // erwartet Struktur: .door a[href="#dayXX"] enthält .route-label
+  document.querySelectorAll('.door a[href^="#day"]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const m = href.match(/^#day(\d+)$/);
+    if (!m) return;
 
-    el.textContent = (route === "evil") ? evil : good;
+    const day = m[1];
+    const labelEl = a.querySelector('.route-label');
+    if (!labelEl) return;
+
+    const good = labelEl.dataset.good;
+    const evil = labelEl.dataset.evil;
+    if (!good || !evil) return; // wichtig: data-good / data-evil müssen existieren
+
+    const route = (typeof routeForDay === "function") ? routeForDay(day, st) : (st.route || "good");
+    labelEl.textContent = (route === "evil") ? evil : good;
   });
 }
 
-function updateOpenDayTitleFromDoor() {
-  const hash = location.hash;
-  if (!hash.startsWith('#day')) return;
 
-  const day = hash.replace('#day', '');
+
+
+function updateOpenDayTitleFromDoor() {
+  const hash = location.hash || "";
+  const m = hash.match(/^#day(\d+)$/);
+  if (!m) return;
+
+  const day = m[1];
   const titleEl = document.getElementById(`title-day${day}`);
   if (!titleEl) return;
 
-  const doorLabel = document.querySelector(
-    `.door a[href="#day${day}"] .route-label`
-  );
-  if (!doorLabel) return;
+  const st = loadState();
+  const route = (typeof routeForDay === "function") ? routeForDay(day, st) : (st.route || "good");
 
-  const labelText = doorLabel.textContent.trim();
+  // Finde das Door-Element über href
+  const doorLabelEl = document.querySelector(`.door a[href="#day${day}"] .route-label`);
+  if (!doorLabelEl) return;
+
+  const good = doorLabelEl.dataset.good || doorLabelEl.textContent.trim();
+  const evil = doorLabelEl.dataset.evil || good;
+
+  const labelText = (route === "evil") ? evil : good;
   titleEl.textContent = `Tag ${day} – ${labelText}`;
 }
 
@@ -483,7 +669,7 @@ function updateOpenDayTitleFromDoor() {
 function getVariantDataForDay(day, st) {
   const data = cfg[day];
   if (!data) return null;
-  const route = (st.route || "good");
+  const route = routeForDay(day, st);
   if (data.good || data.evil) {
     return (route === "evil") ? data.evil : data.good;
   }
@@ -523,6 +709,81 @@ function buildAutoHint(choiceObj) {
   return "";
 }
 
+function getPlayerNameSafe() {
+  try {
+    return localStorage.getItem('adventPlayerName') || 'Standard';
+  } catch (e) {
+    return 'Standard';
+  }
+}
+
+function formatList(arr) {
+  if (!Array.isArray(arr) || arr.length === 0) return "—";
+  return arr.join(", ");
+}
+
+function resolveChoiceLabel(day, choiceKey, st) {
+  const cfgDay = CHOICE_CONFIG[String(day)];
+  if (!cfgDay) return null;
+
+  // routeabhängig?
+  let data = cfgDay;
+  if (cfgDay.good || cfgDay.evil) {
+    const r = (typeof routeForDay === "function") ? routeForDay(day, st) : (st.route || "good");
+    data = (r === "evil") ? cfgDay.evil : cfgDay.good;
+  }
+
+  const entry = data && data[choiceKey];
+  if (!entry) return null;
+
+  return entry.label || choiceKey;
+}
+
+function buildResultText() {
+  const st = loadState();
+  const score = loadScore();
+  const items = loadItems();
+  const player = getPlayerNameSafe();
+
+  const baseRoute = inferRouteFromDay14(st);
+  const routeB = st.routeB ? st.routeB : null;
+
+  let out = "";
+  out += `Spieler: ${player}\n`;
+  out += `Route (bis Tag 20): ${baseRoute}\n`;
+  if (routeB) out += `Route (ab Tag 21): ${routeB}\n`;
+  out += `Gesamtscore: ${score}\n`;
+  out += `Inventar: ${formatList(items)}\n`;
+  out += `\nEntscheidungen:\n`;
+  out += `--------------------------------------------------\n`;
+
+  for (let day = 1; day <= 24; day++) {
+    const k = st[String(day)];
+    if (!k) {
+      out += `Tag ${day}: —\n`;
+      continue;
+    }
+
+    const label = resolveChoiceLabel(day, k, st) || k;
+    out += `Tag ${day}: ${k} – ${label}\n`;
+  }
+
+  return out;
+}
+
+function updateResultUI() {
+  const outEl = document.getElementById("result-output");
+  if (outEl) {
+    outEl.textContent = buildResultText();
+  }
+
+  // Resultat-Button nur zeigen, wenn Tag 24 entschieden wurde
+  const st = loadState();
+  const btn = document.getElementById("open-result");
+  if (btn) {
+    btn.style.display = st["24"] ? "" : "none";
+  }
+}
 
 
 function renderChoicesBox(box) {
@@ -539,7 +800,7 @@ function renderChoicesBox(box) {
 
   const qEl   = box.querySelector('.choice-question');
   const resEl = box.querySelector('.choice-result');
-  const btns  = box.querySelectorAll('.choice-btn');
+  const btns  = box.querySelectorAll('.choice-btn[data-choice]');
 
   if (qEl) qEl.textContent = data.question;
 
@@ -580,7 +841,7 @@ function renderChoicesBox(box) {
     // Text + Hinweis anzeigen
     if (resEl) resEl.textContent = onlyChoice.text + buildAutoHint(onlyChoice);
 
-    updateAllRouteUI();
+    updateAllRouteUI({ skipDay: day });
     if (typeof window.relockDoors === 'function') window.relockDoors();
     return; // wichtig: nicht weiter rendern
   }
@@ -633,9 +894,15 @@ function renderChoicesBox(box) {
         saveItems(items);
       }
 
-      if (liveC.route) {
-        state.route = liveC.route;
-      }
+  if (liveC.route) {
+  if (String(day) === "20") {
+    state.routeB = liveC.route;   // ✅ gilt ab Tag 21
+  } else {
+    state.route = liveC.route;    // für andere Fälle (falls du später noch Wechsel hättest)
+  }
+}
+
+
 
       saveState(state);
       saveScore(score);
@@ -649,8 +916,8 @@ function renderChoicesBox(box) {
         b.classList.toggle('chosen', b === btn);
       });
 
-      // Route-Wechsel / UI neu (Texte + Buttons)
-      updateAllRouteUI();
+      // Route-Wechsel / UI neu (Texte + Buttons) – aktuellen Tag nicht überschreiben
+      updateAllRouteUI({ skipDay: day });
 
       if (typeof window.relockDoors === 'function') {
         window.relockDoors();
@@ -705,19 +972,36 @@ function updateAllRouteChoices() {
   document.querySelectorAll('.choices').forEach(renderChoicesBox);
 }
 
-function updateAllRouteUI() {
-  updateAllRouteTexts();
+function updateAllRouteUI(opts = {}) {
+  updateAllRouteTexts(opts.skipDay || null);
   updateAllRouteChoices();
   updateAllRouteDoorLabels(); 
   updateOpenDayTitleFromDoor();
+  updateResultUI();
 }
+
  
 
     // Initial setzenx
     updateAllRouteUI();
 
-    // Beim Öffnen/Wechseln eines Türchens erneut setzen
-    window.addEventListener("hashchange", updateAllRouteUI);
+window.addEventListener("hashchange", () => {
+  const st = loadState();
+
+  // Wenn ein Wechsel geplant ist und wir NACH Tag 20 sind: aktivieren
+  const hash = location.hash || "";
+  const m = hash.match(/^#day(\d+)/);
+  const openDay = m ? Number(m[1]) : null;
+
+  if (st.pendingRoute && openDay && openDay >= 21) {
+    st.route = st.pendingRoute;
+    delete st.pendingRoute;
+    saveState(st);
+  }
+
+  updateAllRouteUI();
+});
+
 
 
   }     // <-- Ende: initChoices()

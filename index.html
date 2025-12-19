@@ -6,7 +6,7 @@
   <title>Adventskalender</title>
   <meta name="description" content="Adventskalender – 24 Tage, eine Geschichte." />
   <!-- Zentrales Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=1.64">
+  <link rel="stylesheet" href="styles.css?v=1.7">
 </head>
 <body>
   <!-- Schneefall-Effektx -->
@@ -124,6 +124,7 @@
   <a href="#day15" aria-label="Türchen 15 öffnen">
     <div class="num">15</div>
     <div class="label route-label"
+    data-day="15"
          data-good="Voller Wärme"
          data-evil="Schattenmarkt">
       Voller Wärme
@@ -135,6 +136,7 @@
   <a href="#day16" aria-label="Türchen 16 öffnen">
     <div class="num">16</div>
     <div class="label route-label"
+    data-day="16"
          data-good="Lerntage"
          data-evil="Kleiner Auftrag">
       Lerntage
@@ -146,6 +148,7 @@
   <a href="#day17" aria-label="Türchen 17 öffnen">
     <div class="num">17</div>
     <div class="label route-label"
+         data-day="17"
          data-good="Winterfreuden"
          data-evil="Gespräche">
       Winterfreuden
@@ -157,6 +160,7 @@
   <a href="#day18" aria-label="Türchen 18 öffnen">
     <div class="num">18</div>
     <div class="label route-label"
+         data-day="18"
          data-good="Tiefenarchiv"
          data-evil="Verfolger">
       Tiefenarchiv
@@ -168,6 +172,7 @@
   <a href="#day19" aria-label="Türchen 19 öffnen">
     <div class="num">19</div>
     <div class="label route-label"
+         data-day="19"
          data-good="Flüstern"
          data-evil="Schwarzer Spiegel">
       Flüstern
@@ -179,6 +184,7 @@
   <a href="#day20" aria-label="Türchen 20 öffnen">
     <div class="num">20</div>
     <div class="label route-label"
+         data-day="20"
          data-good="Scheideweg"
          data-evil="Kreuzung">
       Scheideweg
@@ -190,6 +196,7 @@
   <a href="#day21" aria-label="Türchen 21 öffnen">
     <div class="num">21</div>
     <div class="label route-label"
+         data-day="21"
          data-good="Ruf des Herzens"
          data-evil="Herr der Schatten">
       Ruf des Herzens
@@ -201,6 +208,7 @@
   <a href="#day22" aria-label="Türchen 22 öffnen">
     <div class="num">22</div>
     <div class="label route-label"
+         data-day="22"
          data-good="Das Tor"
          data-evil="Die Halle">
       Das Tor
@@ -212,6 +220,7 @@
   <a href="#day23" aria-label="Türchen 23 öffnen">
     <div class="num">23</div>
     <div class="label route-label"
+         data-day="23"
          data-good="Nacht der Zeichen"
          data-evil="Nacht der Diebe">
       Nacht der Zeichen
@@ -223,6 +232,7 @@
   <a href="#day24" aria-label="Türchen 24 öffnen">
     <div class="num">24</div>
     <div class="label route-label"
+         data-day="24"
          data-good="Tor des Winters"
          data-evil="Urteil">
       Tor des Winters
@@ -832,7 +842,6 @@
         <a class="close" href="#" aria-label="Schließen">× schließen</a>
       </div>
       <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-
       <div class="story">
         <p class="route-text"
            data-day="19"
@@ -840,7 +849,6 @@
            data-evil="Am nächsten Tag führt Varo dich schweigend durch den Schattenmarkt. Ihr sprecht kaum ein Wort. Schließlich bleibt ihr vor einem Gebäude stehen, dessen Mauern dicker wirken als die der umliegenden Häuser. Keine Fenster. Eine schwere Tür. Drinnen steht ein schwarzer Spiegel, höher als ein Mensch. Seine Oberfläche scheint das Licht zu verschlucken – und doch glimmt tief darin ein schwaches Grün, wie ein Echo des Tors. „Man sagt“, beginnt Varo leise, „der Spiegel zeigt dir nicht, wer du bist. Sondern, wer du wirst, wenn niemand dich aufhält.“ Du trittst näher. Dein Spiegelbild teilt sich: links ruhig, wachsam, mit kalten Augen – jemand, der gelernt hat, nicht zu zögern. Rechts zweifelnd, müde, suchend – jemand, der noch fragt, ob es anders gehen könnte. Der Spiegel verlangt keine Worte. Nur eine Berührung. Varo beobachtet dich genau. „Nicht jeder kommt hier mit sich selbst klar“, sagt er. „Du schon.“">
           Text für 19 - good
         </p>
-
         <div class="choices" data-day="19">
           <p class="choice-question"></p>
           <div class="choice-buttons">
@@ -856,89 +864,201 @@
   </div>
 </section>
 
+<section id="day20" class="modal" aria-labelledby="title-day20" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day20">Tag 20</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
 
-  <section id="day20" class="modal" aria-labelledby="title-day20" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day20">Tag 20 – Scheideweg</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
-        </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story">
-          <p> will, dass du die Werkstatt verrätst.</p>
-        </div>
-      </article>
-    </div>
-  </section>
+      <div class="story">
+        <p class="route-text"
+           data-day="20"
+           data-good="Hildegard führt dich auf eine schwebende Brücke hoch über der Schneestadt. Der Weg unter euren Füßen besteht aus hellem Stein und Eis, glatt und dennoch warm, als würde er euch tragen wollen. Unter dir glitzern Millionen Lichter – Fenster, Laternen, Straßen – ein Netz aus Leben, das sich wie ein umgestürzter Sternenhimmel ausbreitet. Du bleibst stehen, um hinabzusehen, und für einen Moment glaubst du, du könntest hier wirklich bleiben. Dann verändert sich die Luft: Neben euch öffnet sich lautlos ein grünes Portal. Die Luft vibriert, als würdest du mitten in einen mächtigen Herzschlag treten. Im Inneren des Lichts zeichnet sich etwas ab – keine klaren Bilder, aber genug, um dein Herz zu treffen. Für einen Moment wirkt es, als stünde dort jemand… schmal, vertraut. Jaro? Oder ist es nur dein Wunsch, der dir Streiche spielt? Hildegard tritt näher. Ihre Stimme ist ruhig – und doch schneidet sie. „Du kannst in dieser Welt viel Gutes bewirken“, sagt sie leise. „Aber dein Platz ist nicht hier. Nicht in dieser Stadt. Sondern dort, woher du kommst.“ In der Ferne flackern rote und violette Lichter: der Schattenmarkt. Varos Welt. Frei. Wild. Gefährlich. Hildegard legt dir die Hand auf die Schulter. „Du musst nun entscheiden.“"
+           data-evil="Die Tage vergehen schnell: kleine Aufträge, kurze Wege, Gespräche, bei denen du mehr zuhörst als sprichst. Du lernst, wann man schaut – und wann nicht. Wann man fragt – und wann man besser schweigt. An diesem Abend führt Varo dich auf eine alte Brücke hoch über dem Schattenmarkt. Unter euch flackern Feuer, Stimmen vermischen sich zu einem dunklen Summen. Varo lehnt am Geländer, sieht hinab und sagt schließlich: „Du hast dich bewährt. Mehr, als ich erwartet habe.“ Bevor du antworten kannst, verändert sich die Luft. Neben euch öffnet sich ein grünes Leuchten – pulsierend, lebendig, fremd. Das Portal. Das Licht ist nicht grell, sondern tief, fast warm. Darin zeichnen sich Formen ab, als würde etwas aus einer anderen Welt nach dir greifen. Für einen Moment glaubst du, eine Gestalt zu erkennen – schmal, vertraut in ihrer Haltung. Jaro? Oder nur Erinnerung? Dann erklingt eine Stimme: „Du kannst umkehren… oder bleiben.“ Varo sieht dich an, ernst, ohne Maske. „Wenn du bleibst“, sagt er leise, „lasse ich dich nicht fallen.“">
+          Text für 20
+        </p>
 
-  <section id="day21" class="modal" aria-labelledby="title-day21" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day21">Tag 21 – Ruf des Herzens</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+        <div class="choices" data-day="20">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
         </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story">
-          <p>Keine Entscheidung</p>
-        </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </article>
+  </div>
+</section>
 
-  <section id="day22" class="modal" aria-labelledby="title-day22" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day22">Tag 22 – Das Tor</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
-        </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story">
-          <p><strong>Wohin willst du?</strong></p>
-        </div>
-      </article>
-    </div>
-  </section>
 
-  <section id="day23" class="modal" aria-labelledby="title-day23" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day23">Tag 23 – Nacht der Zeichen</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
-        </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story">
-          <p>Egal wo du bist:  
-          Etwas Großes steht bevor.  
-          Du spürst es bis in die Fingerspitzen.</p>
-        </div>
-      </article>
-    </div>
-  </section>
+<section id="day21" class="modal" aria-labelledby="title-day21" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day21">Tag 21</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
 
-  <section id="day24" class="modal" aria-labelledby="title-day24" aria-modal="true" role="dialog">
-    <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
-    <div class="dialog">
-      <article class="card">
-        <div class="story-head">
-          <h2 id="title-day24">Tag 24 – Tor des Winters</h2>
-          <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      <div class="story">
+        <p class="route-text"
+           data-day="21"
+           data-good="Du gehst durch das Portal. Ein grüner Wirbel umhüllt dich, nimmt dir für einen Moment den Atem – dann landest du unsanft in einem Schneehaufen. Kälte schlägt dir entgegen, der Wind pfeift über eine weite, offene Landschaft. Du richtest dich auf, blinzelst – und hörst eine Stimme, die du nie so dringend gebraucht hast: „Elyas?“ Du drehst dich um. Jaro. Ihr fallt euch in die Arme, lacht, obwohl euch die Kälte in die Knochen kriecht. Worte sprudeln durcheinander. Du erzählst von Hildegard und der Schneestadt; Jaro berichtet von seiner eigenen Reise. Dann wird es still. Die Nacht bricht herein, und die Kälte erinnert euch daran, dass Geschichten allein nicht wärmen."
+           data-evil="Du bist geblieben. In den Tagen danach führt Varo dich tiefer in die Gemeinschaft der Schatten. Es gibt kein Ritual, keine feierliche Aufnahme – und doch spürst du, dass sich etwas verändert hat. Man spricht dich anders an. Man bezieht dich ein. Du lernst Namen, Gesichter, Regeln, die nie ausgesprochen werden. Hier unten zählt nicht, wer du warst – sondern, was du aushältst. Eines Abends stellt Varo dich vor einer kleinen Gruppe vor: „Das ist Elyas. Er gehört jetzt dazu.“ Augen ruhen auf dir. Manche freundlich, manche kalt. Und du merkst: Im Schattenmarkt kostet jedes Vertrauen Zeit – und jeder Fehler ist teuer.">
+          Text für 21
+        </p>
+
+        <div class="choices" data-day="21">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
         </div>
-        <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
-        <div class="story">
-          <p>Der Schnee fällt leise.  
-          Heute entscheidest du, wer du wirklich bist.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<section id="day22" class="modal" aria-labelledby="title-day22" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day22">Tag 22</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+
+      <div class="story">
+        <p class="route-text"
+           data-day="22"
+           data-good="In den nächsten Tagen wandert ihr weiter gen Westen. Das Wetter wird milder, und das hilft euch beiden. Immer wieder trefft ihr auf Bauern, die euch mit Wasser, Brot und freundlichen Worten versorgen. Am vierten Tag bleibt Jaro stehen und zeigt in eine Schlucht: Dort sitzt ein altes, zugefrorenes Tor halb im Fels. Das Metall ist uralt, von Runen überzogen, die grünlich schimmern. Du trittst näher. Das Tor ist verschlossen – und es wirkt, als würde es auf etwas warten."
+           data-evil="Am nächsten Tag versammelt ihr euch in einer alten Werkstatt. Die Fenster sind vernagelt, eine einzelne Lampe beleuchtet den Tisch. Eine grobe Karte liegt ausgebreitet da. „Lagerhalle im Nordviertel“, erklärt Varo. „Gut gesichert. Man munkelt, dass dort mehr lagert als offiziell gemeldet ist.“ Alrik grinst. „Ich kenn da jemanden.“ Später, in der Nacht, zieht ihr zu fünft los – über Umwege, durch Hinterhöfe, immer dicht an den Schatten entlang. Ihr kommt rein. Ihr seid drin. Zwischen Kisten und Metallregalen entdeckt ihr schließlich einen massiven Tresor. Einer kniet davor, flucht, probiert Werkzeuge. Nach Minuten knallt er frustriert die Faust dagegen. „Unknackbar“, knurrt er. „Nicht ohne Zeit. Und die haben wir nicht.“">
+          Text für 22
+        </p>
+
+        <div class="choices" data-day="22">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<section id="day23" class="modal" aria-labelledby="title-day23" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day23">Tag 23</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+
+      <div class="story">
+        <p class="route-text"
+           data-day="23"
+           data-good="Ihr erreicht ein unscheinbares Kloster an einem Fluss und findet Unterschlupf. Nach Tagen in Wind und Schnee tut es gut, zu essen, zu schlafen, ohne ständig die Schultern hochzuziehen. Doch in der Nacht flackert grünes Licht über den Wolken. Leuchtende Bahnen ziehen sich wie flüssiges Feuer über den Himmel. Mönche stehen im Hof und starren hinauf; manche beten, manche schweigen nur. Einer kommt zu euch. „An der Spitze des Berges liegt der Ursprung dieses Lichts“, sagt er. „Wenn ihr wollt, kommt mit uns.“ Neugier siegt über Angst."
+           data-evil="Am nächsten Tag sagt Varo dir, dass die Beute übergeben werden soll. Der Treffpunkt liegt offen, zu offen: ein Platz außerhalb der Stadt, umgeben von zerbrochenem Stein und flackerndem Licht. Ihr kommt an – und du spürst sofort, dass etwas nicht stimmt. Zu spät. Aus dem Dunkel tritt eine rivalisierende Gang. Worte fallen, Beleidigungen, Drohungen. Jemand spuckt in den Schnee. Dann kippt alles. Der erste Schlag ist wie ein Funke in trockenem Gras – und plötzlich brennt der ganze Platz.">
+          Text für 23
+        </p>
+
+        <div class="choices" data-day="23">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<section id="day24" class="modal" aria-labelledby="title-day24" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Kapitel schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-day24">Tag 24</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Ein Wintermärchen in 24 Kapiteln</p>
+
+      <div class="story">
+        <p class="route-text"
+           data-day="24"
+           data-good="An der Spitze des Berges öffnet sich das grüne Portal erneut. Die Luft vibriert, als würde die Welt den Atem anhalten. Jaro greift nach deiner Hand. „Du gehst da nicht allein durch“, sagt er leise. Im Licht schimmert eine Stadt – nicht ganz die Schneestadt, nicht ganz etwas anderes. Vertraut und fremd zugleich. Ihr seht euch an, und ohne Worte ist klar: Ihr könnt bleiben. Oder weitergehen."
+           data-evil="Wochen vergehen. Du hast dir einen Namen gemacht. Man kennt dich im Schattenmarkt – manche respektieren dich, manche meiden dich. Varo und du seid Freunde geworden, auf eine raue, ehrliche Art. Das Leben ist aufregend, gefährlich, voller Möglichkeiten. Doch du schläfst leicht und hörst jedes Geräusch. Und manchmal, wenn der Himmel grün flackert, denkst du an das Tor und fragst dich, ob es noch wartet – oder ob du längst entschieden hast.">
+          Text für 24
+        </p>
+
+        <div class="choices" data-day="24">
+          <p class="choice-question"></p>
+          <div class="choice-buttons">
+            <button class="choice-btn" data-choice="A"></button>
+            <button class="choice-btn" data-choice="B"></button>
+            <button class="choice-btn" data-choice="C"></button>
+            <button class="choice-btn" data-choice="D"></button>
+          </div>
+          <p class="choice-result"></p>
+          <a id="open-result"
+          class="choice-btn"
+          href="#result"
+          style="display:none; margin-top:12px; text-decoration:none; text-align:center;">
+          🧾 Resultat
+          </a>
+
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="result" class="modal" aria-labelledby="title-result" aria-modal="true" role="dialog">
+  <a class="backdrop" href="#" aria-label="Resultat schließen"></a>
+  <div class="dialog">
+    <article class="card">
+      <div class="story-head">
+        <h2 id="title-result">Resultat</h2>
+        <a class="close" href="#" aria-label="Schließen">× schließen</a>
+      </div>
+      <p class="byline">Dein Weg durch das Wintermärchen</p>
+
+      <div class="story">
+        <pre id="result-output" style="white-space:pre-wrap; font-family:inherit; line-height:1.35;"></pre>
+      </div>
+    </article>
+  </div>
+</section>
+
+   
+
 
   <!-- Audio-Elemente -->
   <audio id="chime" src="assets/adventskalender.mp3" preload="auto"></audio>
@@ -949,8 +1069,8 @@
        2) calendar.js -> sperrt Türen, ruft wireOpenSound()
        3) choices-data.js -> Konfiguration für A/B-Entscheidungen
        4) choices.js  -> bindet Entscheidungen an HTML -->
-  <script src="audio.js?v=1.64"></script>
-  <script src="calendar.js?v=1.64"></script>
-  <script src="choices.js?v=1.64"></script>
+  <script src="audio.js?v=1.7"></script>
+  <script src="calendar.js?v=1.7"></script>
+  <script src="choices.js?v=1.7"></script>
 </body>
 </html>
